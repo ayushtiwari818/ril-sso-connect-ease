@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import Logo from "./Logo";
+import logo from '../assets/logo.png';
 import { toast } from "@/components/ui/sonner";
 
 const LoginScreen: React.FC = () => {
@@ -27,14 +27,14 @@ const LoginScreen: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center px-6 py-8 w-full">
-      <Logo className="mb-6" />
+    <div className="flex flex-col min-h-screen w-full max-w-sm mx-auto px-4 py-8">
+      <img src={logo} alt="Logo" className="mb-6 w-20 h-20" />
       
       <h1 className="text-2xl font-bold mb-8">Log in to OneApp</h1>
       
-      <form className="w-full space-y-6" onSubmit={handleLogin}>
+      <form className="w-full space-y-6 pb-4" onSubmit={handleLogin}>
         <div className="space-y-2">
-          <label className="text-sm text-gray-600">RIL Email/Phone Number</label>
+          <label className="text-sm text-gray-600">RIL Email / Phone Number</label>
           <Input
             type="text"
             placeholder="e.g. email@ril.com"
@@ -55,8 +55,8 @@ const LoginScreen: React.FC = () => {
             className="w-full p-3"
             required
           />
-          <div className="text-right">
-            <a href="#" className="text-sm text-primary hover:underline">Forgot Password?</a>
+          <div className="text-left">
+            <a href="#" className="text-sm" style={{ color: 'hsl(var(--primary))' }}>Forgot Password?</a>
           </div>
         </div>
         
@@ -73,8 +73,14 @@ const LoginScreen: React.FC = () => {
             Remember me
           </label>
         </div>
-        
-        <div className="space-y-3">
+      </form>
+      <div className="mt-auto w-full">
+        <p className="text-xs text-left text-gray-600 mb-4">
+          By continuing, you agree to the{" "}
+          <a href="#" className="text-primary underline">Terms of Service</a> &{" "}
+          <a href="#" className="text-primary underline">Privacy Policy</a>
+        </p>
+        <div className="space-y-3 w-full">
           <Button
             type="submit"
             className="w-full bg-primary hover:bg-primary/90 text-white py-6"
@@ -92,7 +98,6 @@ const LoginScreen: React.FC = () => {
               "Login"
             )}
           </Button>
-          
           <Button
             type="button"
             onClick={handleSSOLogin}
@@ -102,13 +107,7 @@ const LoginScreen: React.FC = () => {
             Sign in with SSO
           </Button>
         </div>
-      </form>
-      
-      <p className="text-xs text-center mt-8 text-gray-600">
-        By continuing, you agree to the{" "}
-        <a href="#" className="text-primary hover:underline">Terms of Service</a> &{" "}
-        <a href="#" className="text-primary hover:underline">Privacy Policy</a>
-      </p>
+      </div>
     </div>
   );
 };
