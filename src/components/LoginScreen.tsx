@@ -4,12 +4,14 @@ import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import logo from '../assets/logo.png';
 import { toast } from "@/components/ui/sonner";
+import { useNavigate } from 'react-router-dom';
 
 const LoginScreen: React.FC = () => {
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,6 +21,7 @@ const LoginScreen: React.FC = () => {
     setTimeout(() => {
       setIsLoading(false);
       toast("Login successful");
+      navigate('/home'); // Redirect to home page
     }, 1500);
   };
 
