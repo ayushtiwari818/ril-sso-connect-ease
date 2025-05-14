@@ -83,7 +83,7 @@ const LoginScreen: React.FC = () => {
         <div className="space-y-3 w-full">
           <Button
             type="submit"
-            className="w-full bg-primary hover:bg-primary/90 text-white py-6"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full"
             disabled={isLoading}
           >
             {isLoading ? (
@@ -101,7 +101,7 @@ const LoginScreen: React.FC = () => {
           <Button
             type="button"
             onClick={handleSSOLogin}
-            className="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 py-6"
+            className="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 py-3 rounded-full"
             variant="outline"
           >
             Sign in with SSO
