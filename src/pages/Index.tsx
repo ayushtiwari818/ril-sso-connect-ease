@@ -1,24 +1,13 @@
-
-import React, { useState, useEffect } from "react";
-import SplashScreen from "@/components/SplashScreen";
+import React from "react";
 import LoginScreen from "@/components/LoginScreen";
+import PreloadLogo from "@/components/PreloadLogo";
 
-const Index: React.FC = () => {
-  const [showSplash, setShowSplash] = useState(true);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowSplash(false);
-    }, 2500);
-    
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <div className="app-container bg-white">
-      {showSplash ? <SplashScreen /> : <LoginScreen />}
-    </div>
-  );
-};
+const Index: React.FC = () => (
+  <div className="app-container bg-white">
+    <PreloadLogo>
+      <LoginScreen />
+    </PreloadLogo>
+  </div>
+);
 
 export default Index;
