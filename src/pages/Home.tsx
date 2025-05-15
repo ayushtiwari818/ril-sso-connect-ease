@@ -9,6 +9,7 @@ const quickActions = [
     { icon: <ClipboardList size={24} className="text-blue-700" />, label: "Approvals" },
     { icon: <Truck size={24} className="text-blue-700" />, label: "Deliveries" },
     { icon: <Users size={24} className="text-blue-700" />, label: "Customer Assistance", badge: 1 },
+    { icon: <SlidersHorizontal size={24} className="text-blue-700" />, label: "Total Sales" },
 ];
 
 const pendingActions = [
@@ -19,8 +20,8 @@ const pendingActions = [
 ];
 
 const Home: React.FC = () => {
-    const [showMore, setShowMore] = useState(false);
-
+    const [showMoreQuick, setShowMoreQuick] = useState(false);
+    const [showMorePending, setShowMorePending] = useState(false);
     return (
         <div className="w-full flex flex-col  bg-[#f5f6fa]">
             <div className="bg-[#181f60] w-full  pt-6 pb-4  shadow-md">
@@ -53,7 +54,7 @@ const Home: React.FC = () => {
                         <span className="text-xs text-black-400">Jan 13, 2025 <span className="text-gray-400">Monday</span></span>
                         <ChevronRight className="text-blue-700" size={18} />
                     </div>
-                    <span className="text-xs text-gray-400 mb-2">0h / 12h 0m</span>
+                    <span className="text-xs text-gray-500 mb-2">0h / 12h 0m</span>
                     <button className="bg-[#3b5bfd] text-white rounded-full py-2 font-semibold mt-1">Clock In</button>
                 </div>
             </div>
@@ -62,7 +63,7 @@ const Home: React.FC = () => {
             <div className="px-4 mt-4">
                 <div className="font-semibold text-base mb-2">Quick Actions</div>
                 <div className="grid grid-cols-3 gap-3">
-                    {quickActions.slice(0, showMore ? 6 : 3).map((action, i) => (
+                    {quickActions.slice(0,showMoreQuick? quickActions.length:6).map((action, i) => (
                         <div key={action.label} className="bg-white rounded-xl flex flex-col items-center justify-center py-4 shadow relative">
                             {action.icon}
                             <span className="text-xs mt-2 font-medium text-gray-700">{action.label}</span>
@@ -70,8 +71,8 @@ const Home: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <button className="mx-auto block text-[#3b5bfd] text-xs mt-2 font-semibold" onClick={() => setShowMore(!showMore)}>
-                    View {showMore ? "Less" : "More"} {showMore ? <ChevronUp size={14} className="inline" /> : <DownIcon size={14} className="inline" />}
+                <button className="mx-auto block text-[#3b5bfd] text-xs mt-2 font-semibold" onClick={() => setShowMoreQuick(!showMoreQuick)}>
+                    View {showMoreQuick ? "Less" : "More"} {showMoreQuick ? <ChevronUp size={14} className="inline" /> : <DownIcon size={14} className="inline" />}
                 </button>
             </div>
             {/* Pending Actions */}
@@ -81,7 +82,7 @@ const Home: React.FC = () => {
                     <span className="bg-gray-200 text-xs rounded-full px-2 py-0.5 text-gray-600 font-medium">8</span>
                 </div>
                 <div className="space-y-3">
-                    {pendingActions.map((action, i) => (
+                    {pendingActions.slice(0,showMorePending? pendingActions.length:3).map((action, i) => (
                         <div key={action.title} className="bg-white rounded-xl p-3 shadow flex flex-col mb-1">
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-2">
@@ -95,7 +96,9 @@ const Home: React.FC = () => {
                         </div>
                     ))}
                 </div>
-                <button className="mx-auto block text-[#3b5bfd] text-xs mt-2 font-semibold">View More <DownIcon size={14} className="inline" /></button>
+                <button className="mx-auto block text-[#3b5bfd] text-xs mt-2 font-semibold" onClick={() => setShowMorePending(!showMorePending)}>
+                    View {showMorePending ? "Less" : "More"} {showMorePending ? <ChevronUp size={14} className="inline" /> : <DownIcon size={14} className="inline" />}
+                </button>
             </div>
             {/* Announcements */}
             <div className="px-4 mt-6 mb-28">
