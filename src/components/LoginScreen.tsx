@@ -20,13 +20,17 @@ const LoginScreen: React.FC = () => {
     // Simulate login request
     setTimeout(() => {
       setIsLoading(false);
-      toast("Login successful");
+      toast("Login successful", {
+        duration: 600,
+      });
       navigate('/home'); // Redirect to home page
     }, 400);
   };
 
   const handleSSOLogin = () => {
-    toast("SSO login initiated");
+    toast("SSO login initiated", {
+      duration: 600,
+    });
   };
 
   return (
