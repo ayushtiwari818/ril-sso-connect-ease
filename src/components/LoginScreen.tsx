@@ -22,7 +22,7 @@ const LoginScreen: React.FC = () => {
       setIsLoading(false);
       toast("Login successful");
       navigate('/home'); // Redirect to home page
-    }, 1500);
+    }, 400);
   };
 
   const handleSSOLogin = () => {
@@ -88,6 +88,7 @@ const LoginScreen: React.FC = () => {
             type="submit"
             className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-full"
             disabled={isLoading}
+            onClick={handleLogin}
           >
             {isLoading ? (
               <span className="flex items-center justify-center">
