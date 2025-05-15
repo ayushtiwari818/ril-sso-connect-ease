@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Menu, ChevronDown, Bell, MessageSquare, Search, QrCode, SlidersHorizontal, Package, Tag, BarChart2, ClipboardList, Truck, Users, ChevronRight, ChevronUp, ChevronDown as DownIcon, AlertCircle, CalendarDays, FileText, PlusCircle, User, ThumbsUp, MessageCircle, Share2 } from "lucide-react";
 import Footer from "@/components/Footer";
+import LeftMenu from "@/components/LeftMenu";
 const quickActions = [
     { icon: <Package size={24} className="text-blue-700" />, label: "Inventory" },
     { icon: <Tag size={24} className="text-blue-700" />, label: "Markdown" },
@@ -21,11 +22,41 @@ const pendingActions = [
 const Home: React.FC = () => {
     const [showMoreQuick, setShowMoreQuick] = useState(false);
     const [showMorePending, setShowMorePending] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
+
+    const toggleMenu = () => {
+        setShowMenu((prevState) => !prevState);
+    };
+
     return (
         <div className="w-full flex flex-col  bg-[#f5f6fa]">
             <div className="bg-[#181f60] w-full  pt-6 pb-4  shadow-md">
                 <div className="flex items-center justify-between mx-4">
-                    <Menu className="text-white" />
+                    {/* Menu button in top bar or header */}
+                    <button
+                        onClick={() => {toggleMenu()}}
+                        className="p-2 text-white"
+                    >
+                        <Menu />
+                    </button>
+
+                    {/* Sidebar + backdrop overlay */}
+                    {showMenu && (
+                        <>
+                            {/* Overlay */}
+                            <div
+                                className="fixed inset-0 bg-black bg-opacity-30 z-40"
+                                onClick={() => setShowMenu(false)} // click outside to close
+                            ></div>
+
+                            {/* Left Menu Drawer */}
+                            <div className="fixed top-0 left-0 h-full z-50">
+                                <LeftMenu />
+                            </div>
+                        </>
+                    )}
+
+                    {/* <button onClick={()=>{<LeftMenu />}}><Menu className="text-white" /></button> */}
                     <span className="text-white font-semibold text-lg flex items-center">MyStore 1 <ChevronDown size={18} className="ml-1" /></span>
                     <div className="flex items-center space-x-4">
                         <Bell className="text-white" />
@@ -124,8 +155,7 @@ const Home: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Sticky Footer */}
-                    <Footer />
+                    {!showMenu && <Footer />}
                 </div>
 
             </div>
