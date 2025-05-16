@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Menu, ChevronDown, Bell, MessageSquare, Search, QrCode, SlidersHorizontal, Package, Tag, BarChart2, ClipboardList, Truck, Users, ChevronRight, ChevronUp, ChevronDown as DownIcon, AlertCircle, CalendarDays, FileText, PlusCircle, User, ThumbsUp, MessageCircle, Share2 } from "lucide-react";
 import Footer from "@/components/Footer";
 import LeftMenu from "@/components/LeftMenu";
+import MyMap from "@/components/Map";
+import { useNavigate } from "react-router-dom";
 const quickActions = [
     { icon: <Package size={24} className="text-blue-700" />, label: "Inventory" },
     { icon: <Tag size={24} className="text-blue-700" />, label: "Markdown" },
@@ -23,7 +25,7 @@ const Home: React.FC = () => {
     const [showMoreQuick, setShowMoreQuick] = useState(false);
     const [showMorePending, setShowMorePending] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
-
+    const navigate = useNavigate();
     const toggleMenu = () => {
         setShowMenu((prevState) => !prevState);
     };
@@ -85,10 +87,9 @@ const Home: React.FC = () => {
                                 <ChevronRight className="text-blue-700" size={18} />
                             </div>
                             <span className="text-xs text-gray-500 mb-2">0h / 12h 0m</span>
-                            <button className="bg-[#3b5bfd] text-white rounded-full py-2 font-semibold mt-1">Clock In</button>
+                            <button onClick={()=>{navigate("/map")}} className="bg-[#3b5bfd] text-white rounded-full py-2 font-semibold mt-1">Clock In</button>
                         </div>
                     </div>
-
                     {/* Quick Actions */}
                     <div className="px-4 mt-4">
                         <div className="font-semibold text-base mb-2">Quick Actions</div>
