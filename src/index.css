@@ -92,31 +92,60 @@
   * {
     @apply border-border;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    height: 100%;
+    width: 100%;
   }
 
   body {
     @apply bg-background text-foreground;
-    min-height: 100vh;
-    /* Prevent content from being hidden behind mobile bars */
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
   }
 }
 
 .app-container {
-  max-width: 420px;
-  margin: 0 auto;
-  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  /* Add padding to prevent content from being hidden behind mobile bars */
-  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 4rem);
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  
+  /* Center content for larger screens */
+  @media (min-width: 421px) {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  /* Handle safe areas */
+  padding: env(safe-area-inset-top, 0) 
+           max(0px, env(safe-area-inset-right)) 
+           calc(env(safe-area-inset-bottom, 0) + 4rem) 
+           max(0px, env(safe-area-inset-left));
 }
 
-/* Ensure map and login components stay visible */
+/* Ensure content inside app-container doesn't overflow */
+.app-container > * {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Specific styles for map and login components */
 .map-container, .login-container {
+  min-height: 100%;
+  width: 100%;
   position: relative;
-  z-index: 1;
-  /* Add padding to prevent content from being hidden behind mobile bars */
-  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 4rem);
+  display: flex;
+  flex-direction: column;
 }

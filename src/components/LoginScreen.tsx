@@ -37,7 +37,7 @@ const LoginScreen: React.FC = () => {
     <div className="flex flex-col min-h-screen w-full max-w-sm mx-auto px-4 py-8">
       <img src={logo} alt="Logo" className="mb-6 w-20 h-20" />
       
-      <h1 className="text-2xl font-bold mb-8">Log in to OneApp 4</h1>
+      <h1 className="text-2xl font-bold mb-8">Log in to OneApp 5</h1>
       
       <form className="w-full space-y-6 pb-4" onSubmit={handleLogin}>
         <div className="space-y-2">
