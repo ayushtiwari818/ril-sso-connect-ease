@@ -94,49 +94,29 @@
     box-sizing: border-box;
   }
 
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
-
   body {
     @apply bg-background text-foreground;
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    min-height: 100vh;
+    /* Prevent content from being hidden behind mobile bars */
+    padding-bottom: env(safe-area-inset-bottom, 0);
   }
 }
 
 .app-container {
-  /* Mobile-first approach */
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: 100vh;
   width: 100%;
-  height: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  
-  /* Center content for larger screens */
-  @media (min-width: 421px) {
-    max-width: 420px;
-    margin: 0 auto;
-  }
-
-  /* Handle safe areas */
-  padding: env(safe-area-inset-top, 0) 
-           max(0px, env(safe-area-inset-right)) 
-           env(safe-area-inset-bottom, 0) 
-           max(0px, env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  /* Add padding to prevent content from being hidden behind mobile bars */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 4rem);
 }
 
-/* Ensure content inside app-container doesn't overflow */
-.app-container > * {
-  max-width: 100%;
-  overflow-x: hidden;
+/* Ensure map and login components stay visible */
+.map-container, .login-container {
+  position: relative;
+  z-index: 1;
+  /* Add padding to prevent content from being hidden behind mobile bars */
+  padding-bottom: calc(env(safe-area-inset-bottom, 0) + 4rem);
 }
