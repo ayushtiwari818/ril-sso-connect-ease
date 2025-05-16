@@ -31,10 +31,10 @@ const Home: React.FC = () => {
     };
 
     return (
-        <div className="w-full flex flex-col  bg-[#f5f6fa]">
-            <div className="bg-[#181f60] w-full  pt-6 pb-4  shadow-md">
+        <div className="h-screen flex flex-col bg-[#f5f6fa] overflow-hidden">
+            {/* Header - Fixed at top */}
+            <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
                 <div className="flex items-center justify-between mx-4">
-                    {/* Menu button in top bar or header */}
                     <button
                         onClick={() => {toggleMenu()}}
                         className="p-2 text-white"
@@ -42,30 +42,25 @@ const Home: React.FC = () => {
                         <Menu />
                     </button>
 
-                    {/* Sidebar + backdrop overlay */}
                     {showMenu && (
                         <>
-                            {/* Overlay */}
                             <div
                                 className="fixed inset-0 bg-black bg-opacity-30 z-40"
-                                onClick={() => setShowMenu(false)} // click outside to close
+                                onClick={() => setShowMenu(false)}
                             ></div>
-
-                            {/* Left Menu Drawer */}
                             <div className="fixed top-0 left-0 h-full z-50">
                                 <LeftMenu />
                             </div>
                         </>
                     )}
 
-                    {/* <button onClick={()=>{<LeftMenu />}}><Menu className="text-white" /></button> */}
                     <span className="text-white font-semibold text-lg flex items-center">MyStore 2 <ChevronDown size={18} className="ml-1" /></span>
                     <div className="flex items-center space-x-4">
                         <Bell className="text-white" />
                         <MessageSquare className="text-white" />
                     </div>
                 </div>
-                <div className=" flex items-center space-x-3 w-full max-w-2xl mx-auto m-2 px-4 py-3">
+                <div className="flex items-center space-x-3 w-full max-w-2xl mx-auto m-2 px-4 py-3">
                     <div className="flex items-center bg-[#353d7c] rounded-full px-4 py-2 flex-1">
                         <input
                             className="bg-transparent text-white placeholder-white/70 outline-none text-sm sm:text-base flex-1"
@@ -77,9 +72,11 @@ const Home: React.FC = () => {
                         <QrCode className="text-white opacity-80" size={20} />
                     </button>
                 </div>
+            </div>
 
-                <div className="w-full px-4 mt-4 mt-4 bg-white rounded-2xl p-4 flex flex-col shadow mb-2">
-
+            {/* Scrollable Content Area */}
+            <div className="flex-1 overflow-y-auto">
+                <div className="w-full px-4 mt-4 bg-white rounded-2xl p-4 flex flex-col shadow mb-2">
                     <div className="px-4 mt-4">
                         <div className="bg-blue-50 rounded-2xl p-4 flex flex-col shadow mb-2">
                             <div className="flex items-center justify-between mb-2">
@@ -156,12 +153,11 @@ const Home: React.FC = () => {
                             </div>
                         </div>
                     </div>
-                    {!showMenu && <Footer />}
                 </div>
-
             </div>
 
-
+            {/* Footer - Fixed at bottom */}
+            {!showMenu && <Footer />}
         </div>
     );
 };
