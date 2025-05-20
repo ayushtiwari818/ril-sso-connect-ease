@@ -4,6 +4,11 @@ import Footer from "@/components/Footer";
 import LeftMenu from "@/components/LeftMenu";
 import MyMap from "@/components/Map";
 import { useNavigate } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Card } from "@/components/ui/card";
+import MyTasksList from "@/components/MyTasksList";
+import OtherStoreTasksList from "@/components/OtherStoreTasksList";
+
 const quickActions = [
     { icon: <Package size={24} className="text-blue-700" />, label: "Inventory" },
     { icon: <Tag size={24} className="text-blue-700" />, label: "Markdown" },
@@ -26,6 +31,8 @@ const Home: React.FC = () => {
     const [showMorePending, setShowMorePending] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const navigate = useNavigate();
+    const [activeTaskTab, setActiveTaskTab] = useState<'my' | 'other'>('other');
+
     const toggleMenu = () => {
         setShowMenu((prevState) => !prevState);
     };
@@ -36,7 +43,7 @@ const Home: React.FC = () => {
             <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
                 <div className="flex items-center justify-between mx-4">
                     <button
-                        onClick={() => {toggleMenu()}}
+                        onClick={() => { toggleMenu() }}
                         className="p-2 text-white"
                     >
                         <Menu />
@@ -84,7 +91,7 @@ const Home: React.FC = () => {
                                 <ChevronRight className="text-blue-700" size={18} />
                             </div>
                             <span className="text-xs text-gray-500 mb-2">0h / 12h 0m</span>
-                            <button onClick={()=>{navigate("/map")}} className="bg-[#3b5bfd] text-white rounded-full py-2 font-semibold mt-1">Clock In</button>
+                            <button onClick={() => { navigate("/map") }} className="bg-[#3b5bfd] text-white rounded-full py-2 font-semibold mt-1">Clock In</button>
                         </div>
                     </div>
                     {/* Quick Actions */}
@@ -103,30 +110,55 @@ const Home: React.FC = () => {
                             View {showMoreQuick ? "Less" : "More"} {showMoreQuick ? <ChevronUp size={14} className="inline" /> : <DownIcon size={14} className="inline" />}
                         </button>
                     </div>
-                    {/* Pending Actions */}
+                    {/* Pending Store Tasks */}
                     <div className="px-4 mt-6">
                         <div className="flex items-center mb-2">
-                            <span className="font-semibold text-base mr-2">Pending Actions</span>
-                            <span className="bg-gray-200 text-xs rounded-full px-2 py-0.5 text-gray-600 font-medium">8</span>
+                            <span className="font-semibold text-base mr-2">Pending Store Tasks</span>
+                            <span className="bg-[#f0f4ff] text-[#181f60] text-xs rounded-full px-2 py-0.5 font-medium">36</span>
                         </div>
-                        <div className="space-y-3">
-                            {pendingActions.slice(0, showMorePending ? pendingActions.length : 3).map((action, i) => (
-                                <div key={action.title} className="bg-white rounded-xl p-3 shadow flex flex-col mb-1">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center space-x-2">
-                                            {action.icon}
-                                            <span className="font-medium text-sm text-gray-800">{action.title}</span>
-                                        </div>
-                                        {action.due && <span className={`text-[11px] font-semibold ${action.dueColor} bg-orange-50 rounded px-2 py-0.5`}>{action.due}</span>}
-                                        {action.badge && <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 rounded px-2 py-0.5">{action.badge}</span>}
-                                    </div>
-                                    {action.subtitle && <div className="text-xs text-gray-500 mt-1 ml-6">{action.subtitle}</div>}
-                                </div>
-                            ))}
+                        <div className="flex gap-3 mb-3 w-fit  mt-4 mb-4">
+                            <button
+                                className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-all
+            ${activeTaskTab === 'my'
+                                        ? 'bg-[#e6ecff] text-[#181f60] border-[#181f60]'
+                                        : 'bg-transparent text-gray-600 border border-gray-300'}
+        `}
+                                onClick={() => setActiveTaskTab('my')}
+                            >
+                                My Tasks
+                                <span className={`ml-2 text-xs rounded-full px-2 py-0.5 font-semibold border
+            ${activeTaskTab === 'my'
+                                        ? 'bg-white text-[#181f60]'
+                                        : 'bg-[#f0f4ff] text-[#181f60]'}
+        `}>
+                                    8
+                                </span>
+                            </button>
+
+                            <button
+                                className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-all
+            ${activeTaskTab === 'other'
+                                        ? 'bg-[#e6ecff] text-[#181f60] border-[#181f60]'
+                                        : 'bg-transparent text-gray-600 border border-gray-300'}
+        `}
+                                onClick={() => setActiveTaskTab('other')}
+                            >
+                                Other Store Tasks
+                                <span className={`ml-2 text-xs rounded-full px-2 py-0.5 font-semibold border
+            ${activeTaskTab === 'other'
+                                        ? 'bg-white text-[#181f60]'
+                                        : 'bg-[#f0f4ff] text-[#181f60]'}
+        `}>
+                                    28
+                                </span>
+                            </button>
                         </div>
-                        <button className="mx-auto block text-[#3b5bfd] text-xs mt-2 font-semibold" onClick={() => setShowMorePending(!showMorePending)}>
-                            View {showMorePending ? "Less" : "More"} {showMorePending ? <ChevronUp size={14} className="inline" /> : <DownIcon size={14} className="inline" />}
-                        </button>
+
+                        {activeTaskTab === 'my' ? (
+                            <MyTasksList onViewAll={() => navigate('/my-tasks')} />
+                        ) : (
+                            <OtherStoreTasksList onViewAll={() => navigate('/other-store-tasks')} />
+                        )}
                     </div>
                     {/* Announcements */}
                     <div className="px-4 mt-6 mb-28">
