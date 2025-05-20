@@ -155,9 +155,9 @@ const Home: React.FC = () => {
                         </div>
 
                         {activeTaskTab === 'my' ? (
-                            <MyTasksList onViewAll={() => navigate('/my-tasks')} />
+                            <MyTasksList fullView={false} onViewAll={() => navigate('/my-tasks')} onBack={() => {}} />
                         ) : (
-                            <OtherStoreTasksList onViewAll={() => navigate('/other-store-tasks')} />
+                            <OtherStoreTasksList fullView={false} onViewAll={() => navigate('/other-store-tasks')} onBack={() => {}} />
                         )}
                     </div>
                     {/* Announcements */}
