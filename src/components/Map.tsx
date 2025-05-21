@@ -11,7 +11,7 @@ import L from 'leaflet';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import locationIcon from '../assets/location.png';
-
+import { useNavigate } from 'react-router-dom';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -57,7 +57,7 @@ const MyMap = () => {
   const [position, setPosition] = useState<[number, number] | null>(null);
   const [markedLocation, setMarkedLocation] = useState<LocationInfo | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const navigate = useNavigate();
   const fetchAddress = async (lat: number, lng: number) => {
     setLoading(true);
     try {
@@ -127,6 +127,7 @@ const MyMap = () => {
 
       <button
         className="absolute top-5 left-4 z-[1000] bg-white rounded-full p-2 shadow-md"
+        onClick={() => navigate('/home')}
       >
         ←
       </button>
