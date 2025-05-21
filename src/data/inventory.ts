@@ -1,3 +1,5 @@
+import mangoImg from "@/assets/mango.png";
+import nescafeImg from "@/assets/nescafe.png";
 
 export interface Product {
   id: string;
@@ -42,28 +44,28 @@ export const inventorySummary: InventorySummary = {
 export const products: Product[] = [
   {
     id: "1",
-    name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
-    inStock: 99,
-    sku: "SKU-12345",
-    expiryDate: "May 28, 2025",
+    name: "Mango",
+    image: mangoImg,
+    price: 120,
+    category: "Fruits",
+    subCategory: "Tropical",
+    inStock: 50,
+    sku: "SKU-54321",
+    expiryDate: "June 10, 2025",
     status: "Normal",
-    weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications.",
+    weight: "1kg",
+    description: "Fresh and juicy mangoes, perfect for summer.",
     saleHistory: [
-      { date: "May 28, 2025", quantity: 10, revenue: 4200 },
-      { date: "May 27, 2025", quantity: 8, revenue: 3360 },
-      { date: "May 26, 2025", quantity: 12, revenue: 5040 },
-      { date: "May 25, 2025", quantity: 5, revenue: 2100 }
+      { date: "June 1, 2025", quantity: 10, revenue: 1200 },
+      { date: "May 31, 2025", quantity: 8, revenue: 960 },
+      { date: "May 30, 2025", quantity: 12, revenue: 1440 },
+      { date: "May 29, 2025", quantity: 5, revenue: 600 }
     ]
   },
   {
     id: "2",
     name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
+    image: nescafeImg,
     price: 420,
     category: "Beverages",
     subCategory: "Coffee",
@@ -77,7 +79,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
+    image: nescafeImg,
     price: 420,
     category: "Beverages",
     subCategory: "Coffee",
@@ -91,7 +93,7 @@ export const products: Product[] = [
   {
     id: "4",
     name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
+    image: nescafeImg,
     price: 420,
     category: "Beverages",
     subCategory: "Coffee",
@@ -105,7 +107,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
+    image: nescafeImg,
     price: 420,
     category: "Beverages",
     subCategory: "Coffee",
@@ -119,7 +121,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "Nescafe Coffee",
-    image: "https://m.media-amazon.com/images/I/61eDXs9QBML._AC_UF1000,1000_QL80_.jpg",
+    image: nescafeImg,
     price: 420,
     category: "Beverages",
     subCategory: "Coffee",
@@ -133,7 +135,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "Fresh Mangoes",
-    image: "https://img.freepik.com/free-photo/mango_144627-27267.jpg",
+    image: mangoImg,
     price: 180,
     category: "Fruits",
     subCategory: "Fresh Fruits",

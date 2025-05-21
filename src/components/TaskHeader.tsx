@@ -1,34 +1,76 @@
-
 import React from "react";
-import { Menu, ChevronLeft, ChevronDown } from "lucide-react";
+import { ChevronLeft } from "lucide-react";
+import { Bar } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from "chart.js";
 
-export default function TaskHeader({
-    title,
-    subtitle,
-    count,
-    showDropdown = true,
-    onDropdown = () => {},
-    onMenu = () => {},
-    onBack,
-    children
-}) {
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
+
+interface TaskHeaderProps {
+    title: string;
+    onBack: () => void;
+}
+
+const data = {
+  labels: ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+  datasets: [
+    {
+      label: "Interviews",
+      data: [80, 55, 85, 55, 85, 25], // Example data
+      backgroundColor: "#2A3AFF",
+      borderRadius: 6,
+      barPercentage: 0.6,
+      categoryPercentage: 0.6,
+    },
+  ],
+};
+
+const options = {
+  plugins: {
+    legend: { display: false },
+    tooltip: { enabled: true },
+  },
+  scales: {
+    y: {
+      beginAtZero: true,
+      ticks: {
+        callback: function (value) {
+          if (value >= 100) return "1 Cr";
+          if (value >= 75) return "75 L";
+          if (value >= 50) return "50 L";
+          if (value >= 25) return "25 L";
+          return value;
+        },
+        color: "#B0B0B0",
+        font: { size: 12 },
+      },
+      grid: { color: "#F0F0F0" },
+    },
+    x: {
+      ticks: { color: "#B0B0B0", font: { size: 12 } },
+      grid: { display: false },
+    },
+  },
+};
+
+export default function TaskHeader({ title, onBack }: TaskHeaderProps) {
     return (
         <div className="sticky top-0 z-10 bg-[#181f60] flex flex-col px-4 py-4 mb-2">
             <div className="flex items-center mb-2">
-                {onBack ? (
-                    <button onClick={onBack} className="mr-2 text-white font-bold text-lg"><ChevronLeft size={24} /></button>
-                ) : (
-                    <button onClick={onMenu} className="mr-2 text-white font-bold text-lg"><Menu size={24} /></button>
-                )}
+                <button onClick={onBack} className="mr-2 text-white font-bold text-lg">
+                    <ChevronLeft size={24} />
+                </button>
                 <span className="font-semibold text-base text-white flex items-center">
                     {title}
-                    {showDropdown && (
-                        <ChevronDown size={18} className="text-white ml-1" onClick={onDropdown} />
-                    )}
                 </span>
             </div>
-            {subtitle && <div className="text-sm text-white/80 -mt-1 mb-1">{subtitle} {count && <span className="bg-white/20 px-2 py-0.5 rounded-full text-xs">{count}</span>}</div>}
-            {children}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+                <span style={{ color: "#2A3AFF", fontWeight: 600 }}>Yearly ▼</span>
+                <div>
+                    <button>{"<"}</button>
+                    <button>{">"}</button>
+                </div>
+            </div>
+            <Bar data={data} options={options} height={200} />
         </div>
     );
 } 

@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronLeft, SlidersHorizontal, Search, Package, Truck, Tag, RotateCcw } from 'lucide-react';
+import { ChevronRight, ChevronLeft, SlidersHorizontal, Search, Package, Truck, Tag, RotateCcw, ChevronDown, Plus } from 'lucide-react';
 import { inventorySummary, products, chartData } from '@/data/inventory';
 import Footer from '@/components/Footer';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { Input } from '@/components/ui/input';
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
@@ -47,7 +46,7 @@ const Inventory: React.FC = () => {
         </div>
 
         <div className="flex justify-center mt-3">
-          <div className="bg-gray-100 rounded-lg flex w-full max-w-xs mx-4">
+          <div className="bg-gray-100 p-1 rounded-lg flex w-full max-w-xs mx-4">
             <button
               className={`flex-1 py-2 px-4 rounded-lg text-center ${view === 'dashboard' ? 'bg-white shadow-sm text-[#3b5bfd]' : 'text-gray-600'}`}
               onClick={() => setView('dashboard')}
@@ -77,10 +76,14 @@ const Inventory: React.FC = () => {
               {summaryBoxes.map((box, index) => (
                 <div key={index} className="bg-white rounded-lg p-3 shadow">
                   <div className="text-xs text-gray-500">{box.label}</div>
-                  <div className={`text-lg font-semibold ${box.color || 'text-gray-800'}`}>
-                    {box.value}
-                    {box.badge && <span className="ml-1 bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5">!</span>}
-                  </div>
+                  {box.badge ? (
+                    <div className={`text-lg font-semibold flex items-center justify-between ${box.color || 'text-gray-800'}`}>
+                      <span>{box.value}</span>
+                      <span className="bg-red-500 text-white text-xs rounded-full px-1.5 py-0.5 ml-2">!</span>
+                    </div>
+                  ) : (
+                    <div className={`text-lg font-semibold ${box.color || 'text-gray-800'}`}>{box.value}</div>
+                  )}
                 </div>
               ))}
             </div>
@@ -98,14 +101,69 @@ const Inventory: React.FC = () => {
             </div>
 
             <div className="mt-6">
+  <div className="flex items-center justify-between mb-2">
+    <h3 className="font-semibold">Inventory Overview</h3>
+  </div>
+  <div className="bg-white rounded-lg p-3 shadow h-48">
+    <div className="flex items-center justify-between w-full text-xs text-[#3b5bfd] mb-1">
+      <div className="flex items-center">
+        <button type="button" className="flex items-center">
+          <span>Yearly</span>
+          <ChevronDown size={14} className="ml-1" />
+        </button>
+      </div>
+      <div className="flex items-center">
+        <button type="button" className="ml-1">
+          <ChevronLeft size={14} />
+        </button>
+        <button type="button" className="ml-1">
+          <ChevronRight size={14} />
+        </button>
+      </div>
+    </div>
+
+    <ResponsiveContainer width="100%" height="100%">
+      <BarChart data={chartData}>
+        {/* Add grid for horizontal lines */}
+        <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#E5E7EB" />
+        
+        {/* Show X and Y axes */}
+        <XAxis dataKey="name" axisLine={false} tickLine={false} />
+        <YAxis
+          axisLine={false}
+          tickLine={false}
+          tick={{ fontSize: 10, fill: "#6B7280" }} // subtle text
+          domain={[0, 'auto']}
+        />
+        
+        <Bar dataKey="value" fill="#3b5bfd" radius={[4, 4, 0, 0]} />
+      </BarChart>
+    </ResponsiveContainer>
+  </div>
+</div>
+
+            {/* <div className="mt-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-semibold">Inventory Overview</h3>
-                <div className="flex items-center text-xs text-[#3b5bfd]">
-                  <span>Yearly</span>
-                  <ChevronRight size={14} className="ml-1" />
-                </div>
               </div>
               <div className="bg-white rounded-lg p-3 shadow h-48">
+                <div className="flex items-center justify-between w-full text-xs text-[#3b5bfd]">
+                  <div className="flex items-center">
+                    <button type="button" className="flex items-center">
+                      <span>Yearly</span>
+                      <ChevronDown size={14} className="ml-1" />
+                    </button>
+                  </div>
+                  <div className="flex items-center">
+                    <button type="button" className="ml-1">
+                      <ChevronLeft size={14} />
+                    </button>
+                    <button type="button" className="ml-1">
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
+
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={chartData}>
                     <XAxis dataKey="name" axisLine={false} tickLine={false} />
@@ -114,7 +172,7 @@ const Inventory: React.FC = () => {
                   </BarChart>
                 </ResponsiveContainer>
               </div>
-            </div>
+            </div> */}
 
             <div className="mt-6 mb-16">
               <div className="flex items-center justify-between mb-2">
@@ -123,8 +181,8 @@ const Inventory: React.FC = () => {
               </div>
               <div className="flex overflow-x-auto pb-2 -mx-4 px-4">
                 {products.slice(0, 2).map((product) => (
-                  <div 
-                    key={product.id} 
+                  <div
+                    key={product.id}
                     className="bg-white rounded-lg p-3 shadow mr-3 min-w-32 flex flex-col items-center"
                     onClick={() => handleProductClick(product.id)}
                   >
@@ -132,12 +190,6 @@ const Inventory: React.FC = () => {
                     <div className="text-xs text-center font-medium">{product.name}</div>
                   </div>
                 ))}
-                <button 
-                  className="bg-[#3b5bfd] rounded-lg shadow min-w-32 flex flex-col items-center justify-center p-3 text-white"
-                  onClick={() => navigate('/new-product')}
-                >
-                  <span className="text-sm">+ New Entry</span>
-                </button>
               </div>
             </div>
           </div>
@@ -168,11 +220,10 @@ const Inventory: React.FC = () => {
               {['All Items', 'Composite Items', 'Item Groups'].map((tab) => (
                 <button
                   key={tab}
-                  className={`px-4 py-1.5 rounded-full mr-2 text-xs font-medium ${
-                    activeTab === tab
+                  className={`px-4 py-1.5 rounded-full mr-2 text-xs font-medium ${activeTab === tab
                       ? 'bg-blue-600 text-white'
                       : 'bg-white text-gray-700 border border-gray-300'
-                  }`}
+                    }`}
                   onClick={() => setActiveTab(tab)}
                 >
                   {tab}
@@ -216,16 +267,18 @@ const Inventory: React.FC = () => {
       </div>
 
       {/* New Entry Button for List View */}
-      {view === 'list' && (
-        <div className="fixed bottom-20 right-4 z-20">
-          <Button 
-            onClick={() => navigate('/new-product')} 
-            className="bg-blue-600 hover:bg-blue-700 rounded-full shadow-lg h-14 w-14 flex items-center justify-center"
-          >
-            <span className="text-2xl font-bold">+</span>
-          </Button>
-        </div>
-      )}
+      <div className="fixed bottom-20 right-4 z-20">
+  <Button
+    onClick={() => navigate('/new-product')}
+    className="bg-indigo-600 hover:bg-[#00408a] text-white rounded-full px-6 py-3 flex items-center justify-center shadow-lg transition-all duration-200"
+  >
+    <span className="text-md font-semibold flex items-center">
+      <Plus size={20} className="mr-3" />
+      New Entry
+    </span>
+  </Button>
+</div>
+
 
       <Footer />
     </div>
