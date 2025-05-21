@@ -9,6 +9,7 @@ import Home from "./pages/Home";
 import Map from "./components/Map";
 import MyTasksPage from "@/pages/MyTasksPage";
 import OtherStoreTasksPage from "@/pages/OtherStoreTasksPage";
+import TaskDetailsPage from "./pages/TaskDetailsPage";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/map" element={<Map />} />
           <Route path="/my-tasks" element={<MyTasksPage />} />
           <Route path="/other-store-tasks" element={<OtherStoreTasksPage />} />
+          <Route path="/task/:id" element={<TaskDetailsPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

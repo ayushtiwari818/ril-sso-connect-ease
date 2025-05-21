@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { ChevronRight, CalendarDays, User } from "lucide-react";
 import { tasks as allTasks } from "@/data/tasks";
 import TaskHeader from "@/components/TaskHeader";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { useNavigate } from "react-router-dom";
 
 const statusTabs = [
     { label: "Pending", count: 4 },
@@ -14,6 +16,7 @@ const statusTabs = [
 export default function MyTasksList({ fullView, onViewAll, onBack }) {
     const [activeStatus, setActiveStatus] = useState("Pending");
     const [search, setSearch] = useState("");
+    const navigate = useNavigate();
     const tasks = allTasks.filter(t => t.group === "my" && t.title.toLowerCase().includes(search.toLowerCase()));
     return (
         <div className={fullView ? "min-h-screen bg-[#181f60] pt-0" : ""}>
@@ -38,9 +41,8 @@ export default function MyTasksList({ fullView, onViewAll, onBack }) {
                             ))}
                         </div>
                         <div className="overflow-y-auto max-h-[calc(100vh-200px)] pb-12">
-
                             {tasks.map((task, i) => (
-                                <Card className="mb-3 p-4" key={i}>
+                                <Card className="mb-3 p-4 cursor-pointer" key={i} onClick={() => navigate(`/task/${task.id}`)}>
                                     <div className="flex flex-col gap-2">
                                         <div className="flex items-center justify-between">
                                             <span className="font-medium text-base">{task.title}</span>
@@ -71,7 +73,7 @@ export default function MyTasksList({ fullView, onViewAll, onBack }) {
             ) : (
                 <>
                     {tasks.slice(0, 3).map((task, i) => (
-                        <Card className="mb-3 p-4 cursor-pointer" key={i}>
+                        <Card className="mb-3 p-4 cursor-pointer" key={i} onClick={() => navigate(`/task/${task.id}`)}>
                             <div className="flex flex-col gap-2">
                                 <div className="flex items-center justify-between">
                                     <span className="font-medium text-base">{task.title}</span>
