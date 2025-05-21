@@ -26,6 +26,7 @@ const App = () => (
           <Route path="/my-tasks" element={<MyTasksPage />} />
           <Route path="/other-store-tasks" element={<OtherStoreTasksPage />} />
           <Route path="/task/:id" element={<TaskDetailsPage />} />
+          <Route path="/tasks" element={<MyTasksPage />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
