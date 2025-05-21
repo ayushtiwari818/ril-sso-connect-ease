@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,9 @@ import Map from "./components/Map";
 import MyTasksPage from "@/pages/MyTasksPage";
 import OtherStoreTasksPage from "@/pages/OtherStoreTasksPage";
 import TaskDetailsPage from "./pages/TaskDetailsPage";
+import Inventory from "./pages/Inventory";
+import ScanSKU from "./pages/ScanSKU";
+import ProductDetail from "./pages/ProductDetail";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,9 @@ const App = () => (
           <Route path="/other-store-tasks" element={<OtherStoreTasksPage />} />
           <Route path="/task/:id" element={<TaskDetailsPage />} />
           <Route path="/tasks" element={<MyTasksPage />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/scan-sku" element={<ScanSKU />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

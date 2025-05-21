@@ -1,3 +1,4 @@
+
 export const tasks = [
   {
     id: 1,
@@ -57,6 +58,8 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Jossy Thomas",
     group: "other",
+    adhocDetails: null,
+    checklistDetails: null
   },
   {
     id: 7,
@@ -66,6 +69,8 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "--",
     group: "other",
+    adhocDetails: null,
+    checklistDetails: null
   },
   {
     id: 8,
@@ -75,6 +80,8 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "--",
     group: "other",
+    adhocDetails: null,
+    checklistDetails: null
   },
   {
     id: 9,
@@ -84,6 +91,8 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "--",
     group: "other",
+    adhocDetails: null,
+    checklistDetails: null
   },
   {
     id: 10,
@@ -209,6 +218,6 @@ for (const t of tasks) {
     t.adhocDetails = {...adhocDetailsTemplate};
   }
   if (t.type === 'Checklist') {
-    t.checklistDetails ={...checklistDetailsTemplate};
+    t.checklistDetails = {...checklistDetailsTemplate};
   }
 } 
