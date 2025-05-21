@@ -7,6 +7,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shrinivas Reddy",
     group: "my",
+    adhocDetails: {}
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shrinivas Reddy",
     group: "my",
+    adhocDetails: {}
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shrinivas Reddy",
     group: "my",
+    checklistDetails: {}
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Brijesh Chaturvedi",
     group: "other",
+    adhocDetails: {}
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shivanghi Srivast...",
     group: "other",
+    checklistDetails: {}
   },
   {
     id: 6,
@@ -88,6 +93,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shrinivas Reddy",
     group: "my",
+    adhocDetails: {}
   },
   {
     id: 11,
@@ -97,6 +103,7 @@ export const tasks = [
     due: "2:30 PM",
     assignee: "Shrinivas Reddy",
     group: "my",
+    adhocDetails: {}
   }
 ];
 
@@ -202,6 +209,6 @@ for (const t of tasks) {
     t.adhocDetails = {...adhocDetailsTemplate};
   }
   if (t.type === 'Checklist') {
-    t.checklistDetails = checklistDetailsTemplate;
+    t.checklistDetails ={...checklistDetailsTemplate};
   }
 } 
