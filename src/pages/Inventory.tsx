@@ -179,7 +179,7 @@ const Inventory: React.FC = () => {
                 <h3 className="font-semibold">Top Selling Products</h3>
                 <span className="text-xs text-[#3b5bfd]">See All</span>
               </div>
-              <div className="flex overflow-x-auto pb-2 -mx-4 px-4">
+              <div className="flex overflow-x-auto pb-2 -mx-4 px-4 hover:cursor-pointer">
                 {products.slice(0, 2).map((product) => (
                   <div
                     key={product.id}

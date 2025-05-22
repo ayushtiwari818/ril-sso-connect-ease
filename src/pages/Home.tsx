@@ -99,7 +99,7 @@ const Home: React.FC = () => {
                         <div className="font-semibold text-base mb-2">Quick Actions</div>
                         <div className="grid grid-cols-3 gap-3">
                             {quickActions.slice(0, showMoreQuick ? quickActions.length : 6).map((action, i) => (
-                                <div key={action.label} className="bg-white rounded-xl flex flex-col items-center justify-center py-4 shadow relative">
+                                <div key={action.label} className="bg-white rounded-xl flex flex-col items-center justify-center py-4 shadow relative" onClick={() => { navigate(`/${action.label}`) }}>
                                     {action.icon}
                                     <span className="text-xs mt-2 font-medium text-gray-700">{action.label}</span>
                                     {action.badge && <span className="absolute top-2 right-3 bg-red-500 text-white text-[10px] rounded-full px-1.5 py-0.5">{action.badge}</span>}

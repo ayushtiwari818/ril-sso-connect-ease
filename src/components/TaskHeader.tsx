@@ -1,6 +1,5 @@
 import React from "react";
 import { ChevronLeft } from "lucide-react";
-import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from "chart.js";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
@@ -63,14 +62,6 @@ export default function TaskHeader({ title, onBack }: TaskHeaderProps) {
                     {title}
                 </span>
             </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
-                <span style={{ color: "#2A3AFF", fontWeight: 600 }}>Yearly ▼</span>
-                <div>
-                    <button>{"<"}</button>
-                    <button>{">"}</button>
-                </div>
-            </div>
-            <Bar data={data} options={options} height={200} />
         </div>
     );
 } 
