@@ -84,7 +84,7 @@ const TicketDashboard: React.FC = () => {
           </Button>
         </div>
 
-        <div className="flex mb-4 space-x-2 overflow-x-auto py-1">
+        <div className="flex mb-4 space-x-2 overflow-x-auto py-1 ">
           {['all', 'open', 'in-progress', 'resolved'].map((status) => (
             <Button
               key={status}
@@ -99,7 +99,7 @@ const TicketDashboard: React.FC = () => {
           ))}
         </div>
 
-        <div className="space-y-3 pb-24">
+        <div className="space-y-3 pb-24 max-h-[calc(100vh-180px)] overflow-y-auto">
           {filteredTickets.length === 0 ? (
             <div className="text-center py-10">
               <p className="text-gray-500">No tickets found</p>
