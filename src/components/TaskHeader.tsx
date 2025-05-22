@@ -1,3 +1,4 @@
+
 import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip } from "chart.js";
@@ -7,6 +8,12 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip);
 interface TaskHeaderProps {
     title: string;
     onBack: () => void;
+    subtitle?: string;
+    count?: number;
+    showDropdown?: boolean;
+    onDropdown?: () => void;
+    onMenu?: () => void;
+    children?: React.ReactNode;
 }
 
 const data = {
@@ -51,7 +58,16 @@ const options = {
   },
 };
 
-export default function TaskHeader({ title, onBack }: TaskHeaderProps) {
+export default function TaskHeader({ 
+    title, 
+    onBack, 
+    subtitle, 
+    count, 
+    showDropdown, 
+    onDropdown, 
+    onMenu, 
+    children 
+}: TaskHeaderProps) {
     return (
         <div className="sticky top-0 z-10 bg-[#181f60] flex flex-col px-4 py-4 mb-2">
             <div className="flex items-center mb-2">
@@ -62,6 +78,7 @@ export default function TaskHeader({ title, onBack }: TaskHeaderProps) {
                     {title}
                 </span>
             </div>
+            {children}
         </div>
     );
 } 
