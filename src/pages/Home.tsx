@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, ChevronDown, Bell, MessageSquare, Search, QrCode, SlidersHorizontal, Package, Tag, BarChart2, ClipboardList, Truck, Users, ChevronRight, ChevronUp, ChevronDown as DownIcon, AlertCircle, CalendarDays, FileText, PlusCircle, User, ThumbsUp, MessageCircle, Share2 } from "lucide-react";
+import { Menu, ChevronDown, Bell, MessageSquare, Search, QrCode, SlidersHorizontal, Package, Tag, BarChart2, ClipboardList, Truck, Users, ChevronRight, ChevronUp, ChevronDown as DownIcon, AlertCircle, CalendarDays, FileText, PlusCircle, User, ThumbsUp, MessageCircle, Share2, Headphones, PieChart } from "lucide-react";
 import Footer from "@/components/Footer";
 import LeftMenu from "@/components/LeftMenu";
 import MyMap from "@/components/Map";
@@ -8,15 +8,18 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import MyTasksList from "@/components/MyTasksList";
 import OtherStoreTasksList from "@/components/OtherStoreTasksList";
+import { ROUTES } from "@/lib/routes";
 
 const quickActions = [
-    { icon: <Package size={24} className="text-blue-700" />, label: "Inventory" },
+    { icon: <Package size={24} className="text-blue-700" />, label: "Inventory", route: ROUTES.INVENTORY },
     { icon: <Tag size={24} className="text-blue-700" />, label: "Markdown" },
     { icon: <BarChart2 size={24} className="text-blue-700" />, label: "Sales Report" },
     { icon: <ClipboardList size={24} className="text-blue-700" />, label: "Approvals" },
-    { icon: <Truck size={24} className="text-blue-700" />, label: "Deliveries" },
+    { icon: <Truck size={24} className="text-blue-700" />, label: "Deliveries", route: ROUTES.DELIVERIES },
     { icon: <Users size={24} className="text-blue-700" />, label: "Customer Assistance", badge: 1 },
     { icon: <SlidersHorizontal size={24} className="text-blue-700" />, label: "Total Sales" },
+    { icon: <Headphones size={24} className="text-blue-700" />, label: "Tickets", route: ROUTES.TICKET_DASHBOARD, badge: 3 },
+    { icon: <PieChart size={24} className="text-blue-700" />, label: "Store Insights", route: ROUTES.STORE_INSIGHTS },
 ];
 
 const pendingActions = [
@@ -99,7 +102,7 @@ const Home: React.FC = () => {
                         <div className="font-semibold text-base mb-2">Quick Actions</div>
                         <div className="grid grid-cols-3 gap-3">
                             {quickActions.slice(0, showMoreQuick ? quickActions.length : 6).map((action, i) => (
-                                <div key={action.label} className="bg-white rounded-xl flex flex-col items-center justify-center py-4 shadow relative" onClick={() => { navigate(`/${action.label}`) }}>
+                                <div key={action.label} className="bg-white rounded-xl flex flex-col items-center justify-center py-4 shadow relative" onClick={() => { navigate(action.route || `/${action.label.toLowerCase().replace(/\s+/g, '-')}`) }}>
                                     {action.icon}
                                     <span className="text-xs mt-2 font-medium text-gray-700">{action.label}</span>
                                     {action.badge && <span className="absolute top-2 right-3 bg-red-500 text-white text-[10px] rounded-full px-1.5 py-0.5">{action.badge}</span>}
@@ -194,4 +197,4 @@ const Home: React.FC = () => {
     );
 };
 
-export default Home; 
+export default Home;

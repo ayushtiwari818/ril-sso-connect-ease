@@ -17,6 +17,18 @@ import ProductDetail from "./pages/ProductDetail";
 import Deliveries from "./pages/Deliveries";
 import DeliveryDetails from "./pages/DeliveryDetails";
 import PreloadLogo from "./components/PreloadLogo";
+import { ROUTES } from "./lib/routes";
+
+// New pages from repositories
+import TicketDashboard from "./pages/tickets/TicketDashboard";
+import TicketDetails from "./pages/tickets/TicketDetails";
+import NewTicket from "./pages/tickets/NewTicket";
+import TicketInsights from "./pages/tickets/TicketInsights";
+import StoreInsights from "./pages/insights/StoreInsights";
+import StoreAnalytics from "./pages/insights/StoreAnalytics";
+import StoreHeatmap from "./pages/insights/StoreHeatmap";
+import CustomerJourney from "./pages/insights/CustomerJourney";
+import StaffPerformance from "./pages/insights/StaffPerformance";
 
 // Create a new QueryClient instance
 const queryClient = new QueryClient({
@@ -37,21 +49,37 @@ const App = () => (
         <BrowserRouter basename="/ril-sso-connect-ease">
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/map" element={<Map />} />
-            <Route path="/my-tasks" element={<MyTasksPage />} />
-            <Route path="/other-store-tasks" element={<OtherStoreTasksPage />} />
-            <Route path="/task/:id" element={<TaskDetailsPage />} />
+            <Route path={ROUTES.HOME} element={<Home />} />
+            <Route path={ROUTES.MAP} element={<Map />} />
+            <Route path={ROUTES.MY_TASKS} element={<MyTasksPage />} />
+            <Route path={ROUTES.OTHER_STORE_TASKS} element={<OtherStoreTasksPage />} />
+            <Route path={ROUTES.TASK_DETAILS} element={<TaskDetailsPage />} />
             <Route path="/tasks" element={<MyTasksPage />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/scan-sku" element={<ScanSKU />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/deliveries" element={<Deliveries />} />
-            <Route path="/delivery/:id" element={<DeliveryDetails />} />
+            <Route path={ROUTES.INVENTORY} element={<Inventory />} />
+            <Route path={ROUTES.SCAN_SKU} element={<ScanSKU />} />
+            <Route path={ROUTES.PRODUCT_DETAIL} element={<ProductDetail />} />
+            <Route path={ROUTES.DELIVERIES} element={<Deliveries />} />
+            <Route path={ROUTES.DELIVERY_DETAILS} element={<DeliveryDetails />} />
+            
+            {/* New Routes from ticket-wizard */}
+            <Route path={ROUTES.TICKET_DASHBOARD} element={<TicketDashboard />} />
+            <Route path={ROUTES.TICKET_DETAILS} element={<TicketDetails />} />
+            <Route path={ROUTES.NEW_TICKET} element={<NewTicket />} />
+            <Route path={ROUTES.TICKET_INSIGHTS} element={<TicketInsights />} />
+            
+            {/* New Routes from touch-store-insight */}
+            <Route path={ROUTES.STORE_INSIGHTS} element={<StoreInsights />} />
+            <Route path={ROUTES.STORE_ANALYTICS} element={<StoreAnalytics />} />
+            <Route path={ROUTES.STORE_HEATMAP} element={<StoreHeatmap />} />
+            <Route path={ROUTES.CUSTOMER_JOURNEY} element={<CustomerJourney />} />
+            <Route path={ROUTES.STAFF_PERFORMANCE} element={<StaffPerformance />} />
             
             {/* Fallback redirects for common mistyped paths */}
             <Route path="/task" element={<Navigate to="/tasks" replace />} />
             <Route path="/delivery" element={<Navigate to="/deliveries" replace />} />
+            <Route path="/ticket" element={<Navigate to="/tickets" replace />} />
+            <Route path="/insight" element={<Navigate to="/store-insights" replace />} />
+            <Route path="/analytics" element={<Navigate to="/store-analytics" replace />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

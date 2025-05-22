@@ -1,0 +1,30 @@
+
+// Routes configuration for the application
+export const ROUTES = {
+  // Original routes
+  HOME: "/home",
+  MAP: "/map",
+  MY_TASKS: "/my-tasks",
+  OTHER_STORE_TASKS: "/other-store-tasks",
+  TASK_DETAILS: "/task/:id",
+  INVENTORY: "/inventory",
+  SCAN_SKU: "/scan-sku",
+  PRODUCT_DETAIL: "/product/:id",
+  DELIVERIES: "/deliveries",
+  DELIVERY_DETAILS: "/delivery/:id",
+  
+  // New routes from ticket-wizard
+  TICKET_DASHBOARD: "/tickets",
+  TICKET_DETAILS: "/ticket/:id",
+  NEW_TICKET: "/new-ticket",
+  TICKET_INSIGHTS: "/ticket-insights",
+  
+  // New routes from touch-store-insight
+  STORE_INSIGHTS: "/store-insights",
+  STORE_ANALYTICS: "/analytics",
+  STORE_HEATMAP: "/heatmap",
+  CUSTOMER_JOURNEY: "/customer-journey",
+  STAFF_PERFORMANCE: "/staff-performance",
+}
+
+export default ROUTES;
