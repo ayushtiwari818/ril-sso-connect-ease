@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,6 +9,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Textarea } from '@/components/ui/textarea';
 import { ROUTES } from '@/lib/routes';
 import { toast } from '@/components/ui/sonner';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const NewTicket: React.FC = () => {
   const navigate = useNavigate();
@@ -22,13 +23,7 @@ const NewTicket: React.FC = () => {
   
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white py-4 px-4 flex items-center shadow-sm">
-        <ChevronLeft 
-          className="h-6 w-6 text-gray-700 mr-3 cursor-pointer" 
-          onClick={() => navigate(ROUTES.TICKET_DASHBOARD)}
-        />
-        <h1 className="text-xl font-semibold">Create New Ticket</h1>
-      </header>
+      <Header title="Create New Ticket" />
 
       <div className="flex-1 overflow-y-auto p-4">
         <Card>
@@ -115,6 +110,8 @@ const NewTicket: React.FC = () => {
           </CardContent>
         </Card>
       </div>
+      
+      <Footer />
     </div>
   );
 };

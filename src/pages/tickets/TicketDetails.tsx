@@ -1,13 +1,15 @@
 
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ChevronLeft, MessageSquare, Paperclip, Clock, User, Tag, MapPin } from 'lucide-react';
+import { MessageSquare, Paperclip, Clock, User, Tag, MapPin } from 'lucide-react';
 import { tickets } from '@/data/ticketsData';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ROUTES } from '@/lib/routes';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const TicketDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -43,16 +45,7 @@ const TicketDetails: React.FC = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white py-4 px-4 flex items-center shadow-sm">
-        <ChevronLeft 
-          className="h-6 w-6 text-gray-700 mr-3 cursor-pointer" 
-          onClick={() => navigate(ROUTES.TICKET_DASHBOARD)}
-        />
-        <div>
-          <h1 className="text-lg font-semibold">Ticket #{ticket.id}</h1>
-          <p className="text-sm text-gray-500">Created on {new Date(ticket.createdAt).toLocaleDateString()}</p>
-        </div>
-      </header>
+      <Header title={`Ticket #${ticket.id}`} />
 
       <div className="flex-1 overflow-y-auto p-4">
         <Card className="mb-4">
@@ -160,6 +153,8 @@ const TicketDetails: React.FC = () => {
           <Button>Resolve Ticket</Button>
         </div>
       </div>
+      
+      <Footer />
     </div>
   );
 };

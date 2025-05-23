@@ -1,22 +1,18 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, BarChart, PieChart } from 'lucide-react';
+import { BarChart, PieChart } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ROUTES } from '@/lib/routes';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const TicketInsights: React.FC = () => {
   const navigate = useNavigate();
   
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white py-4 px-4 flex items-center shadow-sm">
-        <ChevronLeft 
-          className="h-6 w-6 text-gray-700 mr-3 cursor-pointer" 
-          onClick={() => navigate(ROUTES.TICKET_DASHBOARD)}
-        />
-        <h1 className="text-xl font-semibold">Ticket Insights</h1>
-      </header>
+      <Header title="Ticket Insights" />
 
       <div className="flex-1 overflow-y-auto p-4">
         <Card className="mb-4">
@@ -35,6 +31,8 @@ const TicketInsights: React.FC = () => {
           </CardContent>
         </Card>
       </div>
+      
+      <Footer />
     </div>
   );
 };
