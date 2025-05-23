@@ -4,15 +4,24 @@ import { useNavigate } from 'react-router-dom';
 import { BarChart, PieChart } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ROUTES } from '@/lib/routes';
-import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 const TicketInsights: React.FC = () => {
   const navigate = useNavigate();
   
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <Header title="Ticket Insights" />
+    <div className="h-screen flex flex-col bg-[#f5f6fa]">
+      <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
+        <div className="flex items-center justify-between mx-4">
+          <button onClick={() => navigate(ROUTES.TICKET_DASHBOARD)} className="p-2 text-white">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <span className="text-white font-semibold text-lg">Ticket Insights</span>
+          <div className="w-10"></div>
+        </div>
+      </div>
 
       <div className="flex-1 overflow-y-auto p-4">
         <Card className="mb-4">

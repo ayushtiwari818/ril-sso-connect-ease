@@ -1,20 +1,36 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Filter, PlusCircle, ChevronLeft } from 'lucide-react';
-import { tickets } from '@/data/ticketsData';
-import { Ticket } from '@/lib/types';
+import { Search, Filter, PlusCircle } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import Footer from '@/components/Footer';
 import { ROUTES } from '@/lib/routes';
-import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import Header from '@/components/home/Header';
+
+// Import ticket data type
+import { Ticket } from '@/lib/types';
 
 const TicketDashboard: React.FC = () => {
   const navigate = useNavigate();
   const [filter, setFilter] = useState<'all' | 'open' | 'in-progress' | 'resolved'>('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [tickets, setTickets] = useState<Ticket[]>([]);
+
+  // Load tickets from localStorage or use default data
+  useEffect(() => {
+    const storedTickets = localStorage.getItem('tickets');
+    if (storedTickets) {
+      setTickets(JSON.parse(storedTickets));
+    } else {
+      // Import tickets data when localStorage is empty
+      import('@/data/ticketsData').then(module => {
+        setTickets(module.tickets);
+        localStorage.setItem('tickets', JSON.stringify(module.tickets));
+      });
+    }
+  }, []);
 
   const filteredTickets = tickets.filter(ticket => {
     // Apply status filter
@@ -55,8 +71,18 @@ const TicketDashboard: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <Header title="Service Tickets" />
+    <div className="h-screen flex flex-col bg-[#f5f6fa]">
+      <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
+        <div className="flex items-center justify-between mx-4">
+          <button onClick={() => navigate('/home')} className="p-2 text-white">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <span className="text-white font-semibold text-lg">Service Tickets</span>
+          <div className="w-10"></div>
+        </div>
+      </div>
 
       <div className="p-4">
         <div className="flex items-center mb-4">
@@ -74,7 +100,7 @@ const TicketDashboard: React.FC = () => {
           </Button>
         </div>
 
-        <div className="flex mb-4 space-x-2 overflow-x-auto py-1 ">
+        <div className="flex mb-4 space-x-2 overflow-x-auto py-1">
           {['all', 'open', 'in-progress', 'resolved'].map((status) => (
             <Button
               key={status}

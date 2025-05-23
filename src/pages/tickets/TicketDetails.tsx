@@ -1,21 +1,40 @@
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MessageSquare, Paperclip, Clock, User, Tag, MapPin } from 'lucide-react';
-import { tickets } from '@/data/ticketsData';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { ROUTES } from '@/lib/routes';
-import Header from '@/components/Header';
+import { Ticket } from '@/lib/types';
 import Footer from '@/components/Footer';
 
 const TicketDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const [ticket, setTicket] = useState<Ticket | null>(null);
   
-  const ticket = tickets.find(t => t.id === id);
+  useEffect(() => {
+    // Get tickets from localStorage or fallback to imported data
+    const getTicket = async () => {
+      const storedTickets = localStorage.getItem('tickets');
+      let ticketsArray: Ticket[];
+      
+      if (storedTickets) {
+        ticketsArray = JSON.parse(storedTickets);
+      } else {
+        const module = await import('@/data/ticketsData');
+        ticketsArray = module.tickets;
+        localStorage.setItem('tickets', JSON.stringify(module.tickets));
+      }
+      
+      const foundTicket = ticketsArray.find(t => t.id === id);
+      setTicket(foundTicket || null);
+    };
+    
+    getTicket();
+  }, [id]);
   
   if (!ticket) {
     return (
@@ -44,8 +63,18 @@ const TicketDetails: React.FC = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gray-50">
-      <Header title={`Ticket #${ticket.id}`} />
+    <div className="h-screen flex flex-col bg-[#f5f6fa]">
+      <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
+        <div className="flex items-center justify-between mx-4">
+          <button onClick={() => navigate(ROUTES.TICKET_DASHBOARD)} className="p-2 text-white">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </button>
+          <span className="text-white font-semibold text-lg">Ticket #{ticket.id}</span>
+          <div className="w-10"></div>
+        </div>
+      </div>
 
       <div className="flex-1 overflow-y-auto p-4">
         <Card className="mb-4">
