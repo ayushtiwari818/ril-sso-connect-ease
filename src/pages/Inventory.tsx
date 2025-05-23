@@ -13,6 +13,9 @@ const Inventory: React.FC = () => {
   const [view, setView] = useState<'dashboard' | 'list'>('dashboard');
   const [activeTab, setActiveTab] = useState('All Items');
   const navigate = useNavigate();
+  const onBack = () => {
+    navigate('/home');
+  };
 
   const summaryBoxes = [
     { label: 'Total Inventory Quantity', value: inventorySummary.totalQuantity.toLocaleString() },
@@ -41,7 +44,10 @@ const Inventory: React.FC = () => {
   return (
     <div className="h-screen flex flex-col bg-[#f5f6fa] overflow-hidden">
       <div className="bg-white w-full py-4 shadow-md">
-        <div className="flex items-center justify-between mx-4">
+        <div className="flex items-center mx-4">
+          <button onClick={onBack} className="mr-2 text-black font-bold text-lg">
+            <ChevronLeft size={24} />
+          </button>
           <span className="text-gray-800 font-semibold text-lg">Inventory</span>
         </div>
 
@@ -60,9 +66,9 @@ const Inventory: React.FC = () => {
               className={`flex-1 py-2 px-4 rounded-lg text-center ${view === 'list' ? 'bg-white shadow-sm text-[#3b5bfd]' : 'text-gray-600'}`}
               onClick={() => setView('list')}
             >
-              <span className="flex items-center justify-center">
+              <span className="flex items-center whitespace-nowrap overflow-hidden text-ellipsis">
                 <Package size={16} className="mr-1" />
-                List
+                Merchandise List
               </span>
             </button>
           </div>
@@ -101,80 +107,10 @@ const Inventory: React.FC = () => {
             </div>
 
             <div className="mt-6">
-  <div className="flex items-center justify-between mb-2">
-    <h3 className="font-semibold">Inventory Overview</h3>
-  </div>
-  <div className="bg-white rounded-lg p-3 shadow h-48">
-    <div className="flex items-center justify-between w-full text-xs text-[#3b5bfd] mb-1">
-      <div className="flex items-center">
-        <button type="button" className="flex items-center">
-          <span>Yearly</span>
-          <ChevronDown size={14} className="ml-1" />
-        </button>
-      </div>
-      <div className="flex items-center">
-        <button type="button" className="ml-1">
-          <ChevronLeft size={14} />
-        </button>
-        <button type="button" className="ml-1">
-          <ChevronRight size={14} />
-        </button>
-      </div>
-    </div>
+            </div>
 
-    <ResponsiveContainer width="100%" height="100%">
-      <BarChart data={chartData}>
-        {/* Add grid for horizontal lines */}
-        <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="#E5E7EB" />
-        
-        {/* Show X and Y axes */}
-        <XAxis dataKey="name" axisLine={false} tickLine={false} />
-        <YAxis
-          axisLine={false}
-          tickLine={false}
-          tick={{ fontSize: 10, fill: "#6B7280" }} // subtle text
-          domain={[0, 'auto']}
-        />
-        
-        <Bar dataKey="value" fill="#3b5bfd" radius={[4, 4, 0, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
-  </div>
-</div>
 
-            {/* <div className="mt-6">
-              <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold">Inventory Overview</h3>
-              </div>
-              <div className="bg-white rounded-lg p-3 shadow h-48">
-                <div className="flex items-center justify-between w-full text-xs text-[#3b5bfd]">
-                  <div className="flex items-center">
-                    <button type="button" className="flex items-center">
-                      <span>Yearly</span>
-                      <ChevronDown size={14} className="ml-1" />
-                    </button>
-                  </div>
-                  <div className="flex items-center">
-                    <button type="button" className="ml-1">
-                      <ChevronLeft size={14} />
-                    </button>
-                    <button type="button" className="ml-1">
-                      <ChevronRight size={14} />
-                    </button>
-                  </div>
-                </div>
-
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={chartData}>
-                    <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                    <YAxis hide domain={[0, 100]} />
-                    <Bar dataKey="value" fill="#3b5bfd" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </div> */}
-
-            <div className="mt-6 mb-16">
+            <div className="mt-6">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-semibold">Top Selling Products</h3>
                 <span className="text-xs text-[#3b5bfd]">See All</span>
@@ -192,6 +128,28 @@ const Inventory: React.FC = () => {
                 ))}
               </div>
             </div>
+
+
+            <div className="mt-6 mb-4">
+              <div className="flex items-center justify-between mb-2">
+                <h3 className="font-semibold">Low Selling Products</h3>
+                <span className="text-xs text-[#3b5bfd]">See All</span>
+              </div>
+              <div className="flex overflow-x-auto pb-2 -mx-4 px-4 hover:cursor-pointer">
+                {products.slice(0, 2).map((product) => (
+                  <div
+                    key={product.id}
+                    className="bg-white rounded-lg p-3 shadow mr-3 min-w-32 flex flex-col items-center"
+                    onClick={() => handleProductClick(product.id)}
+                  >
+                    <img src={product.image} alt={product.name} className="w-16 h-16 object-contain mb-2" />
+                    <div className="text-xs text-center font-medium">{product.name}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+
           </div>
         )}
 
@@ -221,8 +179,8 @@ const Inventory: React.FC = () => {
                 <button
                   key={tab}
                   className={`px-4 py-1.5 rounded-full mr-2 text-xs font-medium ${activeTab === tab
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-white text-gray-700 border border-gray-300'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white text-gray-700 border border-gray-300'
                     }`}
                   onClick={() => setActiveTab(tab)}
                 >
@@ -265,21 +223,6 @@ const Inventory: React.FC = () => {
           </div>
         )}
       </div>
-
-      {/* New Entry Button for List View */}
-      <div className="fixed bottom-20 right-4 z-20">
-  <Button
-    onClick={() => navigate('/new-product')}
-    className="bg-indigo-600 hover:bg-[#00408a] text-white rounded-full px-6 py-3 flex items-center justify-center shadow-lg transition-all duration-200"
-  >
-    <span className="text-md font-semibold flex items-center">
-      <Plus size={20} className="mr-3" />
-      New Entry
-    </span>
-  </Button>
-</div>
-
-
       <Footer />
     </div>
   );

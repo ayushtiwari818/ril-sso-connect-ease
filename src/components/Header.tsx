@@ -1,13 +1,23 @@
 
 import React from 'react';
-import { Bell, Menu, Search, User } from 'lucide-react';
+import { Bell, ChevronLeft, Menu, Search, User } from 'lucide-react';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from 'react-router-dom';
 
 const Header = ({ title }: { title: string }) => {
+  const navigate = useNavigate();
+  const onBack=()=>{
+    navigate(-1);
+  }
+  
   return (
     <header className="bg-white py-4 px-4 flex items-center justify-between shadow-sm">
       <div className="flex items-center">
-        <Menu className="h-6 w-6 text-gray-700 mr-3" />
+      <div className="flex items-center mx-4">
+          <button onClick={onBack} className="mr-2 text-black font-bold text-lg">
+            <ChevronLeft size={24} />
+          </button>
+        </div>
         <h1 className="text-xl font-semibold">{title}</h1>
       </div>
       <div className="flex items-center space-x-3">

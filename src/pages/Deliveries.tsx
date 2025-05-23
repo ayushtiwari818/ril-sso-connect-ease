@@ -6,7 +6,8 @@ import { morningDeliveries, afternoonDeliveries, eveningDeliveries } from '@/dat
 import { Button } from '@/components/ui/button';
 import { Shipment } from '@/lib/types';
 import Footer from '@/components/Footer';
-
+import { ChevronLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 type StatusFilter = 'all' | 'pending' | 'in-transit' | 'delivered';
 
 const Deliveries = () => {
@@ -20,10 +21,19 @@ const Deliveries = () => {
   const filteredMorningDeliveries = filterDeliveries(morningDeliveries);
   const filteredAfternoonDeliveries = filterDeliveries(afternoonDeliveries);
   const filteredEveningDeliveries = filterDeliveries(eveningDeliveries);
+  const navigate = useNavigate();
+  const onBack=()=>{
+    navigate('/home');
+  }
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Header title="Deliveries" />
+      <header className="bg-white py-4 px-4 flex items-center shadow-sm">
+        <button onClick={() => onBack()} className="mr-3">
+          <ChevronLeft size={24}/>
+        </button>
+        <h1 className="text-xl font-semibold">Delivery Details</h1>
+      </header>
       <SearchBar />
       
       <div className="px-4 py-2 flex gap-2 overflow-x-auto">

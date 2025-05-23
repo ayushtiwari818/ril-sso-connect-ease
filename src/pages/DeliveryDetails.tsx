@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, ChevronLeft } from 'lucide-react';
 import { getDeliveryById, getAssociateById } from '@/data/mockData';
 import DeliveryMap from '@/components/DeliveryMap';
 import ShipmentDetails from '@/components/ShipmentDetails';
@@ -36,7 +36,7 @@ const DeliveryDetails = () => {
     <div className="pb-16 min-h-screen">
       <header className="bg-white py-4 px-4 flex items-center shadow-sm">
         <button onClick={() => navigate('/deliveries')} className="mr-3">
-          <ArrowLeft className="h-6 w-6 text-gray-700" />
+          <ChevronLeft size={24}/>
         </button>
         <h1 className="text-xl font-semibold">Delivery Details</h1>
       </header>

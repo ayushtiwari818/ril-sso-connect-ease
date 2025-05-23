@@ -45,7 +45,7 @@ const App = () => (
     <TooltipProvider>
       <PreloadLogo>
         <Toaster />
-        <Sonner />
+        <Sonner position="bottom-right" />
         <BrowserRouter basename="/ril-sso-connect-ease">
           <Routes>
             <Route path="/" element={<Index />} />
@@ -85,6 +85,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        
       </PreloadLogo>
     </TooltipProvider>
   </QueryClientProvider>

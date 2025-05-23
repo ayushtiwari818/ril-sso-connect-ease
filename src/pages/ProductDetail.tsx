@@ -33,7 +33,10 @@ const ProductDetail: React.FC = () => {
   };
 
   const handleAction = (action: string) => {
-    toast(`Action triggered: ${action}`);
+    toast(`Action triggered: ${action}`, {
+      duration: 500,
+      className: 'bg-red-600 text-white rounded-md px-4 py-2 font-medium shadow',
+    });
     setShowActions(false);
   };
 
@@ -128,17 +131,11 @@ const ProductDetail: React.FC = () => {
         </div>
       </div>
       
-      <div className="fixed bottom-4 left-0 w-full px-4 flex gap-2">
-        <Button 
-          variant="outline" 
-          className="flex-1 border-orange-500 text-orange-500"
-          onClick={() => handleAction('Markdown')}
-        >
-          Markdown
-        </Button>
+      <div className="fixed bottom-9 right-9 z-50">
+        
         <DropdownMenu open={showActions} onOpenChange={setShowActions}>
           <DropdownMenuTrigger asChild>
-            <Button className="flex-1 bg-blue-600">
+            <Button className="bg-blue-600 shadow-lg rounded-full px-6 py-3 text-white">
               Actions
             </Button>
           </DropdownMenuTrigger>
@@ -185,6 +182,7 @@ const ProductDetail: React.FC = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
+      {/* <Toaster position="bottom-right" /> */}
     </div>
   );
 };
