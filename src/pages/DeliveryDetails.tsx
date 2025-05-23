@@ -34,12 +34,31 @@ const DeliveryDetails = () => {
 
   return (
     <div className="pb-16 min-h-screen">
-      <header className="bg-white py-4 px-4 flex items-center shadow-sm">
+      
+      {/* <header className="bg-white py-4 px-4 flex items-center shadow-sm">
         <button onClick={() => navigate('/deliveries')} className="mr-3">
           <ChevronLeft size={24}/>
         </button>
         <h1 className="text-xl font-semibold">Delivery Details</h1>
-      </header>
+      </header> */}
+
+<div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
+        <div className="flex items-center mx-4">
+          <button
+            onClick={() => { navigate(-1) }}
+            className="p-2 text-white"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="">
+            <span className="text-white font-semibold text-lg">Delivery Details</span>
+          </div>
+
+        </div>
+
+      </div>
+
       <div className="mt-4 pb-16 flex flex-col max-h-[calc(100vh-70px)] overflow-auto">
       <div className="p-4">
         {associate ? (
