@@ -50,6 +50,7 @@ const TicketDetail: React.FC<TicketDetailProps> = ({
       toast({
         title: "Success",
         description: "Ticket approved successfully",
+        duration: 1000,
       });
     }
   };
@@ -60,6 +61,7 @@ const TicketDetail: React.FC<TicketDetailProps> = ({
         title: "Error",
         description: "Please provide a reason for rejection",
         variant: "destructive",
+        duration: 1000,
       });
       return;
     }
@@ -69,6 +71,7 @@ const TicketDetail: React.FC<TicketDetailProps> = ({
       toast({
         title: "Success",
         description: "Ticket rejected",
+        duration: 1000,
       });
     }
   };

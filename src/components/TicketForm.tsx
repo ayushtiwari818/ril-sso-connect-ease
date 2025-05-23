@@ -101,6 +101,7 @@ const TicketForm: React.FC<TicketFormProps> = ({
             title: "Error",
             description: "Please select a product and enter the new count",
             variant: "destructive",
+            duration: 1000,
           });
           return;
         }
@@ -118,6 +119,7 @@ const TicketForm: React.FC<TicketFormProps> = ({
             title: "Error",
             description: "Please select a product and enter the new MRP",
             variant: "destructive",
+            duration: 1000,
           });
           return;
         }
@@ -134,6 +136,7 @@ const TicketForm: React.FC<TicketFormProps> = ({
             title: "Error",
             description: "Please fill in all expense details",
             variant: "destructive",
+            duration: 1000,
           });
           return;
         }
@@ -151,6 +154,8 @@ const TicketForm: React.FC<TicketFormProps> = ({
     toast({
       title: "Success",
       description: "Ticket submitted successfully",
+      variant: "default",
+      duration: 1000,
     });
   };
 
