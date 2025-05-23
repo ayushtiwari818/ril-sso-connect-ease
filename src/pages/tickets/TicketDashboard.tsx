@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Filter, PlusCircle, Bell, ChevronLeft } from 'lucide-react';
+import { Search, Filter, PlusCircle, ChevronLeft } from 'lucide-react';
 import { tickets } from '@/data/ticketsData';
 import { Ticket } from '@/lib/types';
 import { Input } from '@/components/ui/input';
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import Footer from '@/components/Footer';
 import { ROUTES } from '@/lib/routes';
+import Header from '@/components/Header';
 
 const TicketDashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -55,18 +56,7 @@ const TicketDashboard: React.FC = () => {
 
   return (
     <div className="h-screen flex flex-col bg-gray-50">
-      <header className="bg-white py-4 px-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center">
-          <ChevronLeft 
-            className="h-6 w-6 text-gray-700 mr-2" 
-            onClick={() => navigate(ROUTES.HOME)}
-          />
-          <h1 className="text-xl font-semibold">Service Tickets</h1>
-        </div>
-        <div className="flex items-center space-x-3">
-          <Bell className="h-6 w-6 text-gray-700" />
-        </div>
-      </header>
+      <Header title="Service Tickets" />
 
       <div className="p-4">
         <div className="flex items-center mb-4">
