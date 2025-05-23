@@ -20,16 +20,12 @@ import PreloadLogo from "./components/PreloadLogo";
 import { ROUTES } from "./lib/routes";
 
 // New pages from repositories
-import TicketDashboard from "./pages/tickets/TicketDashboard";
-import TicketDetails from "./pages/tickets/TicketDetails";
-import NewTicket from "./pages/tickets/NewTicket";
-import TicketInsights from "./pages/tickets/TicketInsights";
 import StoreInsights from "./pages/insights/StoreInsights";
 import StoreAnalytics from "./pages/insights/StoreAnalytics";
 import StoreHeatmap from "./pages/insights/StoreHeatmap";
 import CustomerJourney from "./pages/insights/CustomerJourney";
 import StaffPerformance from "./pages/insights/StaffPerformance";
-
+import Ticket from "./pages/Ticket";
 // Create a new QueryClient instance
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,10 +58,7 @@ const App = () => (
             <Route path={ROUTES.DELIVERY_DETAILS} element={<DeliveryDetails />} />
             
             {/* New Routes from ticket-wizard */}
-            <Route path={ROUTES.TICKET_DASHBOARD} element={<TicketDashboard />} />
-            <Route path={ROUTES.TICKET_DETAILS} element={<TicketDetails />} />
-            <Route path={ROUTES.NEW_TICKET} element={<NewTicket />} />
-            <Route path={ROUTES.TICKET_INSIGHTS} element={<TicketInsights />} />
+            <Route path={ROUTES.TICKET_DASHBOARD} element={<Ticket />} />
             
             {/* New Routes from touch-store-insight */}
             <Route path={ROUTES.STORE_INSIGHTS} element={<StoreInsights />} />

@@ -15,9 +15,6 @@ export const ROUTES = {
   
   // New routes from ticket-wizard
   TICKET_DASHBOARD: "/tickets",
-  TICKET_DETAILS: "/ticket/:id",
-  NEW_TICKET: "/new-ticket",
-  TICKET_INSIGHTS: "/ticket-insights",
   
   // New routes from touch-store-insight
   STORE_INSIGHTS: "/store-insights",
