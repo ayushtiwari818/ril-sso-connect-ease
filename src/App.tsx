@@ -26,6 +26,7 @@ import StoreHeatmap from "./pages/insights/StoreHeatmap";
 import CustomerJourney from "./pages/insights/CustomerJourney";
 import StaffPerformance from "./pages/insights/StaffPerformance";
 import Ticket from "./pages/Ticket";
+import Analytics from "./pages/Analytics";
 // Create a new QueryClient instance
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -62,7 +63,6 @@ const App = () => (
             
             {/* New Routes from touch-store-insight */}
             <Route path={ROUTES.STORE_INSIGHTS} element={<StoreInsights />} />
-            <Route path={ROUTES.STORE_ANALYTICS} element={<StoreAnalytics />} />
             <Route path={ROUTES.STORE_HEATMAP} element={<StoreHeatmap />} />
             <Route path={ROUTES.CUSTOMER_JOURNEY} element={<CustomerJourney />} />
             <Route path={ROUTES.STAFF_PERFORMANCE} element={<StaffPerformance />} />
@@ -72,7 +72,7 @@ const App = () => (
             <Route path="/delivery" element={<Navigate to="/deliveries" replace />} />
             <Route path="/ticket" element={<Navigate to="/tickets" replace />} />
             <Route path="/insight" element={<Navigate to="/store-insights" replace />} />
-            <Route path="/analytics" element={<Navigate to="/store-analytics" replace />} />
+            <Route path="/analytics" element={<Analytics />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

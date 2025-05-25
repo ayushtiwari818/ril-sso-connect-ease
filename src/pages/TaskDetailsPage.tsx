@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { tasks } from "@/data/tasks";
 import { ChevronLeft } from "lucide-react";
+import { useState } from "react";
 
 export default function TaskDetailsPage() {
   const { id } = useParams();
@@ -18,7 +19,14 @@ export default function TaskDetailsPage() {
   const [showChecklistModal, setShowChecklistModal] = React.useState(false);
   const [checklistAnswers, setChecklistAnswers] = React.useState<{ [qIdx: number]: string }>({});
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
+  const [answers, setAnswers] = useState({});
 
+  const handleOptionChange = (questionIndex, selectedOption) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [questionIndex]: selectedOption,
+    }));
+  };
   if (!task) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-white">
@@ -72,27 +80,61 @@ export default function TaskDetailsPage() {
             </div>
           </>
         ) : task.type === 'Checklist' ? (
-          <>
-            <div className="flex items-center text-xs text-gray-500 gap-2 mb-4">
-              <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M7 7h2v2H7z"/></svg>
-              {checklistDetails?.questionsCount} Questions
-            </div>
-            <hr className="my-4 border-gray-200" />
-            <div className="text-xs text-gray-500 mb-2 font-semibold">Task Description</div>
-            <div className="text-sm text-gray-800 mb-4">{checklistDetails.description}</div>
-            <div className="text-xs text-gray-500 mb-2 font-semibold">Key metrics to track</div>
-            {checklistDetails.questions.map((q, idx) => (
-              <div key={idx} className="mb-2">
-                <div className="font-semibold text-xs">{q.question}</div>
-                <ul className="list-disc ml-5 text-xs text-gray-700">
-                  {q.options.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-            <div className="flex-1" />
-          </>
+          <div className="h-screen flex flex-col px-4 py-4">
+  {/* Top non-scrolling content */}
+  <div className="shrink-0">
+    <div className="flex items-center text-xs text-gray-500 gap-2 mb-4">
+      <svg width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+        <rect x="2" y="2" width="12" height="12" rx="2" />
+        <path d="M7 7h2v2H7z" />
+      </svg>
+      {checklistDetails?.questionsCount} Questions
+    </div>
+
+    <hr className="my-4 border-gray-200" />
+
+    <div className="text-xs text-gray-500 mb-2 font-semibold">Task Description</div>
+    <div className="text-sm text-gray-800 mb-4">{checklistDetails.description}</div>
+
+    <div className="text-xs text-gray-500 mb-2 font-semibold">Key metrics to track</div>
+  </div>
+
+  <div className="flex-1 overflow-y-auto pt-2 pb-20">
+    {checklistDetails.questions.map((q, idx) => (
+      <div
+        key={idx}
+        className="mb-8 p-5 bg-white rounded-lg shadow-md border border-gray-200 scroll-mb-34"
+      >
+        <h3 className="text-base font-semibold text-gray-800 mb-4">{q.question}</h3>
+
+        <div className="space-y-3">
+          {q.options.map((item, i) => (
+            <label
+              key={i}
+              className="flex items-center p-3 bg-gray-50 rounded-md cursor-pointer border border-gray-200 hover:border-blue-500 transition duration-200"
+            >
+              <input
+                type="radio"
+                name={`question-${idx}`}
+                value={item}
+                className="form-radio text-blue-600 focus:ring-0 focus:outline-none mr-3"
+                onChange={() => handleOptionChange(idx, item)}
+              />
+              <span className="text-sm text-gray-700">{item}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+    ))}
+     <button
+    className="w-full bg-[#4f5fff] text-white rounded-full py-3 text-base font-semibold mt-3 mb-4"
+    onClick={() => setShowChecklistDialog(true)}
+  >
+    Submit
+  </button>
+  </div>
+  </div>
+
         ) : (
           <div className="text-xs text-gray-700">No extra details for this task type.</div>
         )}
@@ -112,7 +154,7 @@ export default function TaskDetailsPage() {
           )}
           {showDialog && (
             <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
-              <div className="w-full bg-white rounded-t-2xl p-6 pb-8 shadow-lg flex flex-col items-center animate-slide-up" style={{maxWidth: '100%'}}>
+              <div className="w-full bg-white rounded-t-2xl p-6 pb-8 shadow-lg flex flex-col items-center animate-slide-up" style={{ maxWidth: '100%' }}>
                 <div className="font-semibold text-lg mb-6 mt-2 w-full text-left">Are you sure ?</div>
                 <button
                   className="w-full bg-[#3b3bfd] text-white rounded-full py-3 text-base font-semibold mb-3"
@@ -146,7 +188,7 @@ export default function TaskDetailsPage() {
             <>
               {showChecklistDialog && (
                 <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/30">
-                  <div className="w-full bg-white rounded-t-2xl p-6 pb-8 shadow-lg flex flex-col items-center animate-slide-up" style={{maxWidth: '100%'}}>
+                  <div className="w-full bg-white rounded-t-2xl p-6 pb-8 shadow-lg flex flex-col items-center animate-slide-up" style={{ maxWidth: '100%' }}>
                     <div className="font-semibold text-lg mb-6 mt-2 w-full text-left">Are you sure ?</div>
                     <button
                       className="w-full bg-[#3b3bfd] text-white rounded-full py-3 text-base font-semibold mb-3"
@@ -209,11 +251,10 @@ export default function TaskDetailsPage() {
                             {checklistDetails.questions[currentQuestion].options.map((opt, oIdx) => (
                               <label
                                 key={oIdx}
-                                className={`border rounded-xl px-4 py-2 flex items-center text-sm cursor-pointer transition-all ${
-                                  checklistAnswers[currentQuestion] === opt
-                                    ? 'border-[#4f5fff] bg-[#f5f7ff]'
-                                    : 'border-gray-200 bg-white'
-                                }`}
+                                className={`border rounded-xl px-4 py-2 flex items-center text-sm cursor-pointer transition-all ${checklistAnswers[currentQuestion] === opt
+                                  ? 'border-[#4f5fff] bg-[#f5f7ff]'
+                                  : 'border-gray-200 bg-white'
+                                  }`}
                               >
                                 <input
                                   type="radio"
@@ -242,9 +283,8 @@ export default function TaskDetailsPage() {
                       </button>
                       {currentQuestion < (checklistDetails?.questionsCount || 1) - 1 ? (
                         <button
-                          className={`flex-1 rounded-full py-3 text-base font-semibold text-white ${
-                            checklistAnswers[currentQuestion] ? 'bg-[#4f5fff]' : 'bg-gray-300 cursor-not-allowed'
-                          }`}
+                          className={`flex-1 rounded-full py-3 text-base font-semibold text-white ${checklistAnswers[currentQuestion] ? 'bg-[#4f5fff]' : 'bg-gray-300 cursor-not-allowed'
+                            }`}
                           disabled={!checklistAnswers[currentQuestion]}
                           onClick={() => setCurrentQuestion(q => q + 1)}
                         >
@@ -252,11 +292,10 @@ export default function TaskDetailsPage() {
                         </button>
                       ) : (
                         <button
-                          className={`flex-1 rounded-full py-3 text-base font-semibold text-white ${
-                            Object.keys(checklistAnswers).length === checklistDetails?.questionsCount
-                              ? 'bg-[#4f5fff]'
-                              : 'bg-gray-300 cursor-not-allowed'
-                          }`}
+                          className={`flex-1 rounded-full py-3 text-base font-semibold text-white ${Object.keys(checklistAnswers).length === checklistDetails?.questionsCount
+                            ? 'bg-[#4f5fff]'
+                            : 'bg-gray-300 cursor-not-allowed'
+                            }`}
                           disabled={Object.keys(checklistAnswers).length !== checklistDetails?.questionsCount}
                           onClick={() => {
                             setShowChecklistModal(false);

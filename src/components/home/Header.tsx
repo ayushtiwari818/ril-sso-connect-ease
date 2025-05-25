@@ -33,7 +33,7 @@ const Header: React.FC = () => {
           </>
         )}
 
-        <span className="text-white font-semibold text-lg flex items-center">MyStore 2 <ChevronDown size={18} className="ml-1" /></span>
+        <span className="text-white font-semibold text-lg flex items-center">MyStore <ChevronDown size={18} className="ml-1" /></span>
         <div className="flex items-center space-x-4">
           <Bell className="text-white" />
           <MessageSquare className="text-white" />
