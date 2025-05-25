@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -43,7 +42,7 @@ const App = () => (
       <PreloadLogo>
         <Toaster />
         <Sonner position="bottom-right" />
-        <BrowserRouter basename="/ril-sso-connect-ease">
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path={ROUTES.HOME} element={<Home />} />
@@ -78,7 +77,6 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
-        
       </PreloadLogo>
     </TooltipProvider>
   </QueryClientProvider>

@@ -3,7 +3,6 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://ayushtiwari818.github.io/ril-sso-connect-ease",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
