@@ -9,7 +9,8 @@ import TicketDetail from "@/components/TicketDetail";
 import BulkActions from "@/components/BulkActions";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
-
+import { ChevronLeft } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 // Icons for ticket templates
 const Icons = {
   CountCorrection: () => (
@@ -91,7 +92,7 @@ const Ticket = () => {
   const [viewingTicket, setViewingTicket] = useState<TicketType | null>(null);
   const [selectedTickets, setSelectedTickets] = useState<string[]>([]);
   const [bulkSelectionMode, setBulkSelectionMode] = useState(false);
-
+  const navigate = useNavigate();
   // Add debug logging for template selection
   useEffect(() => {
     console.log('Current template selection:', selectedTemplate);
@@ -204,12 +205,25 @@ const Ticket = () => {
   }, [activeTab]);
 
   return (
-    <div className="min-h-screen bg-secondary pb-16">
-      {/* <Header /> */}
+    <div className="min-h-screen overflow-y-auto flex flex-col bg-secondary">
+      <div className="bg-[#181f60] w-full pt-6 pb-4 shadow-md">
+        <div className="flex items-center mx-4">
+          <button
+            onClick={() => { navigate('/home') }}
+            className="p-2 text-white"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <div className="">
+            <span className="text-white font-semibold text-lg">Tickets</span>
+          </div>
+        </div>
+      </div>
+
       <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} />
-      
-      <div className="p-4 pb-20">
-        {/* Submit Ticket Tab */}
+
+      <div className="flex-1 px-4 pb-20 mt-4 overflow-y-auto">
         {activeTab === "submit" && !selectedTemplate && (
           <>
             <h2 className="text-lg font-medium mb-4">Select Ticket Type</h2>
@@ -312,16 +326,16 @@ const Ticket = () => {
       </div>
 
       {/* Bulk Actions Bar */}
-      <BulkActions
-        selectedCount={selectedTickets.length}
-        onApproveAll={handleBulkApprove}
-        onClose={() => {
-          setBulkSelectionMode(false);
-          setSelectedTickets([]);
-        }}
-      />
-
-      {/* <BottomNavigation /> */}
+      {bulkSelectionMode && (
+        <BulkActions
+          selectedCount={selectedTickets.length}
+          onApproveAll={handleBulkApprove}
+          onClose={() => {
+            setBulkSelectionMode(false);
+            setSelectedTickets([]);
+          }}
+        />
+      )}
     </div>
   );
 };
