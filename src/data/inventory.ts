@@ -1,5 +1,5 @@
-import mangoImg from "@/assets/mango.png";
-import nescafeImg from "@/assets/nescafe.png";
+import shirtImg from "@/assets/shirt.png";
+import kurtaImg from "@/assets/kurta.png";
 
 export interface Product {
   id: string;
@@ -44,107 +44,107 @@ export const inventorySummary: InventorySummary = {
 export const products: Product[] = [
   {
     id: "1",
-    name: "Mango",
-    image: mangoImg,
-    price: 120,
-    category: "Fruits",
-    subCategory: "Tropical",
+    name: "Shirt",
+    image: shirtImg,
+    price: 1200,
+    category: "Clothing",
+    subCategory: "Men's Wear",
     inStock: 50,
     sku: "SKU-54321",
     expiryDate: "June 10, 2025",
     status: "Normal",
-    weight: "1kg",
-    description: "Fresh and juicy mangoes, perfect for summer.",
+    weight: "250gms",
+    description: "Classic cotton shirt, perfect for formal and casual occasions.",
     saleHistory: [
-      { date: "June 1, 2025", quantity: 10, revenue: 1200 },
-      { date: "May 31, 2025", quantity: 8, revenue: 960 },
-      { date: "May 30, 2025", quantity: 12, revenue: 1440 },
-      { date: "May 29, 2025", quantity: 5, revenue: 600 }
+      { date: "June 1, 2025", quantity: 10, revenue: 12000 },
+      { date: "May 31, 2025", quantity: 8, revenue: 9600 },
+      { date: "May 30, 2025", quantity: 12, revenue: 14400 },
+      { date: "May 29, 2025", quantity: 5, revenue: 6000 }
     ]
   },
   {
     id: "2",
-    name: "Nescafe Coffee",
-    image: nescafeImg,
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
+    name: "Kurta",
+    image: kurtaImg,
+    price: 1500,
+    category: "Clothing",
+    subCategory: "Traditional Wear",
     inStock: 99,
     sku: "SKU-12346",
     expiryDate: "May 28, 2025",
     status: "Normal",
     weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications."
+    description: "Elegant cotton kurta with traditional embroidery, perfect for festive occasions."
   },
   {
     id: "3",
-    name: "Nescafe Coffee",
-    image: nescafeImg,
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
+    name: "Kurta",
+    image: kurtaImg,
+    price: 1500,
+    category: "Clothing",
+    subCategory: "Traditional Wear",
     inStock: 99,
     sku: "SKU-12347",
     expiryDate: "May 15, 2025",
     status: "Markdown",
     weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications."
+    description: "Elegant cotton kurta with traditional embroidery, perfect for festive occasions."
   },
   {
     id: "4",
-    name: "Nescafe Coffee",
-    image: nescafeImg,
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
+    name: "Kurta",
+    image: kurtaImg,
+    price: 1500,
+    category: "Clothing",
+    subCategory: "Traditional Wear",
     inStock: 99,
     sku: "SKU-12348",
     expiryDate: "Jun 10, 2025",
     status: "Normal",
     weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications."
+    description: "Elegant cotton kurta with traditional embroidery, perfect for festive occasions."
   },
   {
     id: "5",
-    name: "Nescafe Coffee",
-    image: nescafeImg,
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
+    name: "Kurta",
+    image: kurtaImg,
+    price: 1500,
+    category: "Clothing",
+    subCategory: "Traditional Wear",
     inStock: 99,
     sku: "SKU-12349",
     expiryDate: "Jun 15, 2025",
     status: "Normal",
     weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications."
+    description: "Elegant cotton kurta with traditional embroidery, perfect for festive occasions."
   },
   {
     id: "6",
-    name: "Nescafe Coffee",
-    image: nescafeImg,
-    price: 420,
-    category: "Beverages",
-    subCategory: "Coffee",
+    name: "Kurta",
+    image: kurtaImg,
+    price: 1500,
+    category: "Clothing",
+    subCategory: "Traditional Wear",
     inStock: 99,
     sku: "SKU-12350",
     expiryDate: "Jun 28, 2025",
     status: "Normal",
     weight: "300gms",
-    description: "This is a sample product description. It would contain detailed information about the product's features and specifications."
+    description: "Elegant cotton kurta with traditional embroidery, perfect for festive occasions."
   },
   {
     id: "7",
-    name: "Fresh Mangoes",
-    image: mangoImg,
-    price: 180,
-    category: "Fruits",
-    subCategory: "Fresh Fruits",
+    name: "Shirt",
+    image: shirtImg,
+    price: 1200,
+    category: "Clothing",
+    subCategory: "Men's Wear",
     inStock: 150,
     sku: "SKU-45678",
     expiryDate: "Jun 5, 2025",
     status: "Normal",
-    weight: "1kg",
-    description: "Fresh ripe mangoes sourced from local farms. Perfect for summer desserts and smoothies."
+    weight: "250gms",
+    description: "Classic cotton shirt, perfect for formal and casual occasions."
   }
 ];
 
