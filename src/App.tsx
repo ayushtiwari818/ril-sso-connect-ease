@@ -61,7 +61,7 @@ const App = () => (
             <Route path={ROUTES.TICKET_DASHBOARD} element={<Ticket />} />
             
             {/* New Routes from touch-store-insight */}
-            <Route path={ROUTES.STORE_INSIGHTS} element={<StoreInsights />} />
+            <Route path={ROUTES.INSIGHTS} element={<StoreInsights />} />
             <Route path={ROUTES.STORE_HEATMAP} element={<StoreHeatmap />} />
             <Route path={ROUTES.CUSTOMER_JOURNEY} element={<CustomerJourney />} />
             <Route path={ROUTES.STAFF_PERFORMANCE} element={<StaffPerformance />} />

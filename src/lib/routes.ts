@@ -17,7 +17,7 @@ export const ROUTES = {
   TICKET_DASHBOARD: "/tickets",
   
   // New routes from touch-store-insight
-  STORE_INSIGHTS: "/store-insights",
+  INSIGHTS: "/insights",
   STORE_ANALYTICS: "/analytics",
   STORE_HEATMAP: "/heatmap",
   CUSTOMER_JOURNEY: "/customer-journey",

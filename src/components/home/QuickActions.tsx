@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Package, Tag, BarChart2, ClipboardList, Truck, Users, SlidersHorizontal, Headphones, PieChart, ChevronUp, ChevronDown } from 'lucide-react';
+import { Package, Tag, BarChart2, ClipboardList, Truck, Users, SlidersHorizontal, Headphones, PieChart, ChevronUp, ChevronDown, AlarmClock } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "@/lib/routes";
 
@@ -17,14 +17,17 @@ const QuickActions: React.FC = () => {
   
   const quickActions: QuickActionItem[] = [
     { icon: <Package size={24} className="text-blue-700" />, label: "Inventory", route: ROUTES.INVENTORY },
-    { icon: <Tag size={24} className="text-blue-700" />, label: "Markdown" },
-    { icon: <BarChart2 size={24} className="text-blue-700" />, label: "Sales Report" },
-    { icon: <ClipboardList size={24} className="text-blue-700" />, label: "Approvals" },
+    { icon: <PieChart size={24} className="text-blue-700" />, label: "Insights", route: ROUTES.INSIGHTS },
+    { icon: <Tag size={24} className="text-blue-700" />, label: "Tasks", route: ROUTES.MY_TASKS },
+    { icon: <Headphones size={24} className="text-blue-700" />, label: "Raise Tickets", route: ROUTES.TICKET_DASHBOARD, badge: 3 },
     { icon: <Truck size={24} className="text-blue-700" />, label: "Deliveries", route: ROUTES.DELIVERIES },
-    { icon: <Users size={24} className="text-blue-700" />, label: "Customer Assistance", badge: 1 },
-    { icon: <SlidersHorizontal size={24} className="text-blue-700" />, label: "Total Sales" },
-    { icon: <Headphones size={24} className="text-blue-700" />, label: "Tickets", route: ROUTES.TICKET_DASHBOARD, badge: 3 },
-    { icon: <PieChart size={24} className="text-blue-700" />, label: "Store Insights", route: ROUTES.STORE_INSIGHTS },
+    { icon: <BarChart2 size={24} className="text-blue-700" />, label: "Communication" },
+    { icon: <ClipboardList size={24} className="text-blue-700" />, label: "Document Management" }, 
+    { icon: <Users size={24} className="text-blue-700" />, label: "Logbook Management", badge: 1 },
+    { icon: <SlidersHorizontal size={24} className="text-blue-700" />, label: "Store Planogram" },
+    { icon: <AlarmClock size={24} className="text-blue-700" />, label: "My Schedule" },
+    
+    
   ];
 
   return (

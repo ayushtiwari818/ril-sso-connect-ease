@@ -51,7 +51,7 @@ const StoreInsights: React.FC = () => {
             className="h-6 w-6 text-gray-700 mr-2 cursor-pointer" 
             onClick={() => navigate(ROUTES.HOME)}
           />
-          <h1 className="text-xl font-semibold">Store Insights</h1>
+          <h1 className="text-xl font-semibold">Insights</h1>
         </div>
         <Button variant="outline" size="sm" className="flex items-center">
           <CalendarDays className="h-4 w-4 mr-1" />
