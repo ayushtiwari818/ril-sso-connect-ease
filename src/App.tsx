@@ -17,7 +17,7 @@ import Deliveries from "./pages/Deliveries";
 import DeliveryDetails from "./pages/DeliveryDetails";
 import PreloadLogo from "./components/PreloadLogo";
 import { ROUTES } from "./lib/routes";
-
+import MySchedule from "./pages/MySchedule";
 // New pages from repositories
 import StoreInsights from "./pages/insights/StoreInsights";
 import StoreAnalytics from "./pages/insights/StoreAnalytics";
@@ -72,6 +72,9 @@ const App = () => (
             <Route path="/ticket" element={<Navigate to="/tickets" replace />} />
             <Route path="/insight" element={<Navigate to="/store-insights" replace />} />
             <Route path="/analytics" element={<Analytics />} />
+
+            {/* New Routes from my-schedule */}
+            <Route path={ROUTES.MY_SCHEDULE} element={<MySchedule />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

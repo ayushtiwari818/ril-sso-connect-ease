@@ -22,6 +22,9 @@ export const ROUTES = {
   STORE_HEATMAP: "/heatmap",
   CUSTOMER_JOURNEY: "/customer-journey",
   STAFF_PERFORMANCE: "/staff-performance",
+
+  // New routes from my-schedule
+  MY_SCHEDULE: "/my-schedule",
 }
 
 export default ROUTES;

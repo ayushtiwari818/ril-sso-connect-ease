@@ -13,7 +13,7 @@ const StoreAnalytics: React.FC = () => {
       <header className="bg-white py-4 px-4 flex items-center shadow-sm">
         <ChevronLeft 
           className="h-6 w-6 text-gray-700 mr-3 cursor-pointer" 
-          onClick={() => navigate(ROUTES.STORE_INSIGHTS)}
+          onClick={() => navigate(ROUTES.INSIGHTS)}
         />
         <h1 className="text-xl font-semibold">Store Analytics</h1>
       </header>

@@ -25,7 +25,7 @@ const QuickActions: React.FC = () => {
     { icon: <ClipboardList size={24} className="text-blue-700" />, label: "Document Management" }, 
     { icon: <Users size={24} className="text-blue-700" />, label: "Logbook Management", badge: 1 },
     { icon: <SlidersHorizontal size={24} className="text-blue-700" />, label: "Store Planogram" },
-    { icon: <AlarmClock size={24} className="text-blue-700" />, label: "My Schedule" },
+    { icon: <AlarmClock size={24} className="text-blue-700" />, label: "My Schedule", route: ROUTES.MY_SCHEDULE },
     
     
   ];
