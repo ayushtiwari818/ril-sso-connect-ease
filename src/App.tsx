@@ -26,6 +26,7 @@ import CustomerJourney from "./pages/insights/CustomerJourney";
 import StaffPerformance from "./pages/insights/StaffPerformance";
 import Ticket from "./pages/Ticket";
 import Analytics from "./pages/Analytics";
+import StorePlanogram from "./pages/StorePlanogram";
 // Create a new QueryClient instance
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -74,6 +75,7 @@ const App = () => (
             <Route path="/analytics" element={<Analytics />} />
 
             {/* New Routes from my-schedule */}
+            <Route path={ROUTES.STORE_PLANOMGRAM} element={<StorePlanogram />} />
             <Route path={ROUTES.MY_SCHEDULE} element={<MySchedule />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

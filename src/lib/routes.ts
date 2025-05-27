@@ -25,6 +25,7 @@ export const ROUTES = {
 
   // New routes from my-schedule
   MY_SCHEDULE: "/my-schedule",
+  STORE_PLANOMGRAM: "/store-planogram",
 }
 
 export default ROUTES;
